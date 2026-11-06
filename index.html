@@ -270,6 +270,121 @@ body{font-size:16px}button,input,.btn{min-height:48px}.nav button{min-height:52p
 .rm-note{font-size:15px;line-height:1.5;color:#49675e}.rm-warning{font-size:16px;line-height:1.5;font-weight:850;padding:15px;border-radius:15px;background:#fff4de;border:1px solid #e1b268;margin-bottom:16px}.rm-list{display:grid;gap:10px;margin:14px 0}.rm-item{display:grid;grid-template-columns:minmax(0,1fr) 116px;gap:10px;align-items:center;border:1px solid #d4e8de;border-radius:15px;padding:13px;background:#f8fcfa}.rm-item h4{font-size:16px;margin:0 0 4px}.rm-item p{font-size:15px;line-height:1.45;margin:0;color:#355c4e}.rm-item small{font-size:13px;color:#557a6e}.rm-item label{font-size:13px;font-weight:750}.rm-help{display:grid;grid-template-columns:1fr 1fr;gap:16px}.rm-help article{background:#f6faf7;border:1px solid #d9eae1;border-radius:15px;padding:15px}.rm-help ol{padding-left:20px}.rm-help li{margin:8px 0;line-height:1.5}
 #rmStatus{min-height:22px;font-size:15px;font-weight:750}
 @media(max-width:950px){.rm-layout{grid-template-columns:1fr}}@media(max-width:620px){.rm-fields,.rm-help{grid-template-columns:1fr}.rm-card{padding:16px}.rm-days{gap:3px}.rm-day{min-height:59px}.nav button{flex:1 0 84px;white-space:normal}.content{padding-bottom:136px}}
+
+/* === SEGURAPP | Todos los botones visibles, versión EAFIT === */
+html,body{max-width:100%}
+button,.btn,.option,.tag{box-sizing:border-box;max-width:100%;white-space:normal;text-overflow:clip;overflow-wrap:break-word;word-break:normal}
+.btn,.option,.tag,.nav button{min-height:48px}
+.btn{line-height:1.35;text-align:center;white-space:normal}
+.cta{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px}
+.cta>.btn{flex:0 1 auto;min-width:0}
+.option{min-width:0;max-width:100%;line-height:1.4}
+.option .letter{flex-shrink:0}
+.option span:last-child{min-width:0;overflow-wrap:break-word}
+.toolbar{align-items:stretch}
+.tag{font-size:14px;line-height:1.35;text-align:center}
+.rm-item,.rm-item>div,.rm-item label,.reminder-item{min-width:0}
+.rm-time{min-width:0}
+.rm-fields>*{min-width:0}
+.topic{min-width:0}
+.topic>span{overflow-wrap:break-word}
+@media(min-width:621px) and (max-width:900px){
+  .sidebar{overflow:visible}
+  .nav{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-auto-rows:minmax(64px,auto);
+    gap:8px;
+    overflow:visible;
+    padding:5px 0 9px;
+  }
+  .nav button{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    min-width:0;width:100%;min-height:64px;
+    padding:10px 7px;
+    font-size:13px;line-height:1.25;
+    white-space:normal;text-align:center;
+    overflow-wrap:break-word;
+  }
+  .nav button .ico{width:29px;height:29px;flex-shrink:0}
+}
+@media(max-width:620px){
+  .sidebar{overflow:visible}
+  .nav{
+    position:fixed;
+    inset:auto 0 0 0;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-auto-rows:minmax(76px,auto);
+    align-items:stretch;
+    justify-items:stretch;
+    gap:6px;
+    width:100%;
+    padding:8px 8px calc(10px + env(safe-area-inset-bottom, 0px));
+    margin:0;
+    background:#0c1b1a;
+    box-shadow:0 -8px 28px rgba(3,24,21,.22);
+    border-top:1px solid #294741;
+    z-index:100;
+    overflow:visible;
+    overflow-x:visible;
+    overflow-y:visible;
+    scrollbar-width:auto;
+  }
+  .nav button{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    min-width:0!important;
+    max-width:100%;
+    width:100%;
+    height:auto;
+    min-height:76px;
+    flex:auto;
+    padding:7px 3px;
+    gap:5px;
+    margin:0;
+    font-size:12px;
+    line-height:1.17;
+    letter-spacing:0;
+    white-space:normal!important;
+    text-overflow:clip;
+    overflow-wrap:break-word;
+    text-align:center;
+    border-radius:12px;
+    transform:none;
+  }
+  .nav button:nth-child(7){grid-column:span 2}
+  .nav button .ico{
+    width:26px;height:26px;min-width:26px;min-height:26px;
+    border-radius:8px;flex-shrink:0;
+  }
+  .nav button .ico svg{width:19px;height:19px}
+  .content{padding-bottom:calc(200px + env(safe-area-inset-bottom, 0px))!important}
+  .topbar{position:relative;min-width:0}
+  .top-title{min-width:0}
+  .top-title span{overflow-wrap:break-word}
+  .toolbar{display:flex;flex-direction:column;align-items:stretch}
+  .toolbar .search{width:100%;min-width:0;flex:none}
+  .toolbar .tag{width:100%;min-height:48px}
+  .cta{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .cta>.btn,.cta>button{min-width:0;width:100%;min-height:52px}
+  .btn{padding:13px 11px;font-size:15px}
+  .option{min-height:55px;align-items:center;padding:13px 11px;font-size:15px}
+  .rm-days{grid-template-columns:repeat(7,minmax(0,1fr))}
+  .rm-day{min-width:0;padding:5px 1px}
+  #rmDownload{width:100%;min-height:52px;white-space:normal}
+  .rm-item{grid-template-columns:minmax(0,1fr) 112px}
+  .rm-card{min-width:0}
+}
+@media(max-width:360px){
+  .nav{gap:4px;padding:7px 5px calc(9px + env(safe-area-inset-bottom, 0px))}
+  .nav button{font-size:11.5px;line-height:1.18;padding:6px 2px;min-height:78px}
+  .nav button .ico{width:25px;height:25px}
+  .content{padding-bottom:calc(214px + env(safe-area-inset-bottom, 0px))!important}
+}
+
 </style>
 </head>
 <body>
