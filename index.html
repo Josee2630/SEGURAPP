@@ -671,7 +671,17 @@ function reminders(){
  rmPreview(false);
  document.getElementById('rmCalculate').onclick=()=>{if(rmPreview(true))rmStatus('Horas calculadas. Puedes cambiarlas.')};
  document.getElementById('rmSave').onclick=()=>{
-  try{const draft=rmRead();rmPlan(draft);rmSaved=draft;localStorage.setItem(RM_KEY,JSON.stringify(draft));rmStatus('Horario guardado en este navegador.')}
+  try{
+   const draft=rmRead(),items=rmPlan(draft);
+   document.querySelectorAll('[data-rm-time]').forEach(input=>{
+    const item=items.find(x=>x.id===input.dataset.rmTime);
+    if(!item)return;
+    if(!Number.isFinite(rmMinutes(input.value)))throw Error('Corrige la hora de un aviso.');
+    if(input.value!==rmClock(item.automatic))draft.overrides[item.id]=input.value;
+    else delete draft.overrides[item.id];
+   });
+   rmPlan(draft);rmSaved=draft;localStorage.setItem(RM_KEY,JSON.stringify(draft));rmStatus('Horario y avisos guardados en este navegador.');
+  }
   catch(e){rmStatus(e.message,true)}
  };
  document.getElementById('rmDownload').onclick=rmDownload;
