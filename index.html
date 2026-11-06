@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b6b57">
+<title>SEGURAPP Luxe · Plataforma inteligente de seguridad</title>
+<meta name="description" content="SEGURAPP Signature: plataforma educativa de seguridad para operarios de planta, reto NODO EAFIT.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon-192.png" sizes="192x192">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --bg:#eef5f3;
+  --bg-2:#e5efec;
+  --paper:#ffffff;
+  --ink:#102625;
+  --muted:#6d8381;
+  --line:#dce9e5;
+  --glass:rgba(255,255,255,.72);
+  --nav:#091917;
+  --nav-2:#102624;
+  --green:#0b6b57;
+  --green-2:#13a57d;
+  --green-3:#39d2a0;
+  --green-soft:#e4f8f0;
+  --cyan:#54c8d8;
+  --gold:#e3b958;
+  --danger:#d57261;
+  --shadow:0 18px 60px rgba(12,39,35,.10);
+  --shadow-2:0 8px 26px rgba(11,58,47,.08);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(57,210,160,.18) 0, transparent 22%),
+    radial-gradient(circle at 88% 10%, rgba(84,200,216,.13) 0, transparent 20%),
+    linear-gradient(180deg,#f8fdfb 0%,var(--bg) 36%,var(--bg-2) 100%);
+  min-height:100vh;
+}
+button,input{font:inherit}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none}
+button:focus-visible,input:focus-visible{outline:3px solid #f0b44a;outline-offset:3px}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+.sidebar{
+  background:linear-gradient(180deg, rgba(9,25,23,.96), rgba(16,38,36,.98));
+  color:#edf8f4;
+  padding:22px 18px 18px;
+  border-right:1px solid rgba(255,255,255,.05);
+  position:sticky;top:0;height:100vh;overflow:auto;
+}
+.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-thumb{background:#27413e;border-radius:999px}
+.brand{display:flex;align-items:center;gap:14px;padding:6px 10px 14px}
+.brand-logo{
+  width:58px;height:58px;border-radius:18px;
+  background:linear-gradient(135deg,var(--green-2),var(--green));
+  box-shadow:0 18px 38px rgba(19,165,125,.35), inset 0 1px 0 rgba(255,255,255,.3);
+  display:grid;place-items:center;font-size:28px;position:relative;overflow:hidden;
+}
+.brand-logo:after{content:'';position:absolute;inset:-20% auto auto -20%;width:60px;height:60px;background:rgba(255,255,255,.16);filter:blur(10px);transform:rotate(35deg)}
+.brand h1{margin:0;font:800 25px/1 'Space Grotesk',Inter,sans-serif;letter-spacing:-.04em}
+.brand small{display:block;margin-top:4px;color:#96c4b7;letter-spacing:.14em;text-transform:uppercase;font-size:10px;font-weight:800}
+.premium-box,.side-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+.premium-box{padding:16px;margin:6px 6px 18px}
+.premium-box .eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7faaa0;font-weight:900}
+.premium-box h2{margin:8px 0 6px;font-size:16px}
+.premium-box p{margin:0;color:#b9d5cc;font-size:12px;line-height:1.55}
+.nav-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7faaa0;font-weight:900;padding:0 14px 8px}
+.nav{display:grid;gap:8px}
+.nav button{
+  width:100%;display:flex;align-items:center;gap:12px;text-align:left;
+  padding:13px 14px;border-radius:18px;background:transparent;color:#e8f4ef;font-weight:700;
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.nav button .ico{
+  width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);font-size:15px;flex-shrink:0;
+}
+.nav button:hover{background:rgba(255,255,255,.05);transform:translateX(2px)}
+.nav button.active{background:linear-gradient(90deg, rgba(19,165,125,.23), rgba(19,165,125,.08));box-shadow:inset 0 0 0 1px rgba(19,165,125,.22)}
+.nav button.active .ico{background:rgba(19,165,125,.22)}
+.side-bottom{margin-top:18px;display:grid;gap:12px}
+.side-card{padding:14px}
+.side-card h4{margin:0 0 7px;font-size:13px}.side-card p{margin:0;color:#b8d1ca;font-size:11px;line-height:1.5}
+.workspace{display:flex;flex-direction:column;min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:60;
+  height:84px;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:0 24px;background:rgba(255,255,255,.7);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(220,233,229,.9);
+}
+.top-title b{display:block;font-size:15px}.top-title span{font-size:12px;color:var(--muted)}
+.top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{
+  padding:9px 13px;border-radius:999px;background:#f5fbf8;border:1px solid #dcebe5;
+  color:#166f59;font-size:12px;font-weight:800;display:flex;align-items:center;gap:8px;
+}
+.profile{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 6px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.profile .avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--green-2),var(--green));font-weight:900;box-shadow:0 10px 20px rgba(19,165,125,.22)}
+.content{max-width:1360px;margin:0 auto;padding:24px}
+.hero{
+  position:relative;overflow:hidden;border-radius:32px;padding:30px;
+  background:linear-gradient(130deg,#0a2624 0%, #0b6b57 45%, #12a27b 73%, #46d3b0 100%);
+  color:#fff;box-shadow:0 26px 70px rgba(12,73,61,.22);
+}
+.hero:before,.hero:after{content:'';position:absolute;border-radius:50%;pointer-events:none}
+.hero:before{width:380px;height:380px;right:-110px;top:-140px;background:radial-gradient(circle, rgba(255,255,255,.17) 0, rgba(255,255,255,.02) 58%, transparent 70%)}
+.hero:after{width:240px;height:240px;left:55%;bottom:-120px;background:radial-gradient(circle, rgba(255,255,255,.14) 0, rgba(255,255,255,.02) 60%, transparent 72%)}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:20px;position:relative;z-index:1}
+.hero .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:#c9f6e7}
+.hero h2{margin:10px 0 14px;font:800 clamp(34px,4.4vw,56px)/1.02 'Space Grotesk',Inter,sans-serif;letter-spacing:-.05em;max-width:730px}
+.hero p{margin:0;color:#dbf2eb;max-width:700px;line-height:1.62}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:9px;justify-content:center;padding:13px 18px;border-radius:16px;font-weight:800;transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-white{background:#fff;color:#0b6b57;box-shadow:0 10px 24px rgba(255,255,255,.18)}
+.btn-outline{background:rgba(255,255,255,.11);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.btn-soft{background:#eef8f4;color:#0b6b57;border:1px solid #d6ebe3}
+.btn-dark{background:#112b28;color:#fff}
+.hero-side{display:grid;gap:14px;align-content:start}
+.glass{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);
+  border-radius:24px;padding:18px;backdrop-filter:blur(8px);
+}
+.glass h3{margin:0 0 8px;font-size:15px}.glass p{margin:0;color:#d9efe8;font-size:12px;line-height:1.55}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hero-stat{padding:16px;border-radius:20px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);text-align:center}
+.hero-stat b{display:block;font:800 30px/1 'Space Grotesk',Inter,sans-serif}.hero-stat span{font-size:11px;color:#d6eee7;font-weight:700}
+.float-chip{position:absolute;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);font-size:12px;font-weight:800;color:#effcf7;animation:floatY 5s ease-in-out infinite}
+.float-one{right:30px;top:24px}.float-two{right:82px;bottom:26px;animation-delay:1s}.float-three{left:46%;top:20px;animation-delay:2s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.section{margin-top:20px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:0 0 12px}
+.section-head h3{margin:0;font:800 24px/1.08 'Space Grotesk',Inter,sans-serif;letter-spacing:-.04em}
+.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px;max-width:770px;line-height:1.55}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid-2{display:grid;grid-template-columns:1.14fr .86fr;gap:16px}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.96));
+  border:1px solid rgba(220,233,229,.98);border-radius:var(--radius);box-shadow:var(--shadow-2);
+  position:relative;overflow:hidden;
+}
+.card:before{content:'';position:absolute;inset:0 auto auto 0;width:100%;height:1px;background:linear-gradient(90deg, rgba(255,255,255,.7), transparent)}
+.stat{padding:20px}
+.stat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.stat-ico{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(180deg,#eff9f5,#f8fcfb);border:1px solid #dcebe5;color:#0b6b57;font-size:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.kicker{font-size:11px;font-weight:900;color:#2b7a65;background:#f5fbf8;border:1px solid #e0efe8;padding:7px 10px;border-radius:999px}
+.stat b{display:block;font:800 31px/1 'Space Grotesk',Inter,sans-serif;letter-spacing:-.04em}.stat span{display:block;margin-top:6px;color:var(--muted);font-size:13px}.stat small{display:block;margin-top:12px;color:#8ca09d;font-size:11px;line-height:1.45}
+.dashboard{padding:22px}
+.dashboard-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+.score{
+  background:linear-gradient(180deg,#f6fcf9,#eef8f4);border:1px solid #dcebe4;border-radius:24px;padding:22px;
+}
+.score-ring{width:172px;height:172px;margin:8px auto 0;border-radius:50%;position:relative;background:conic-gradient(var(--green-2) 0 72%, #dcebe6 72% 100%);display:grid;place-items:center;box-shadow:0 14px 35px rgba(19,165,125,.14)}
+.score-ring:after{content:'';position:absolute;inset:14px;border-radius:50%;background:#fff;border:1px solid #e2ede8}
+.score-ring .in{position:relative;z-index:1;text-align:center}.score-ring strong{display:block;font:900 36px/1 'Space Grotesk',Inter,sans-serif}.score-ring span{display:block;color:#748785;font-size:12px;margin-top:4px}
+.goal{margin-top:16px;display:grid;gap:11px}.goal-item{padding:13px 14px;background:#fff;border:1px solid #e3ede8;border-radius:16px}.goal-item .row{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px;font-size:13px;font-weight:800}.bar{height:10px;border-radius:999px;background:#e5efeb;overflow:hidden}.bar > div{height:100%;background:linear-gradient(90deg,var(--green),var(--green-3));border-radius:999px}
+.alerts{display:grid;gap:12px}.alert{padding:16px 17px;border-radius:18px;border:1px solid #e0ebe8;background:#fff}.alert.warn{background:#fffaf1;border-color:#f2e2b2}.alert.good{background:#f3fcf7;border-color:#d5eddf}.alert.cyan{background:#f1fcfe;border-color:#d2eef2}.alert strong{display:block;font-size:13px;margin-bottom:6px}.alert p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.feature{padding:22px;display:flex;gap:16px;align-items:flex-start}
+.feature-icon{width:58px;height:58px;border-radius:18px;background:linear-gradient(180deg,#eef9f5,#ffffff);border:1px solid #dfece7;display:grid;place-items:center;color:#0b6b57;font-size:25px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7);flex-shrink:0}
+.feature h4{margin:6px 0 8px;font-size:19px}.feature p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.meta{display:flex;gap:8px;flex-wrap:wrap}.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#eef8f4;border:1px solid #dcebe4;color:#166f59;font-size:11px;font-weight:800}.chip.dim{background:#f7faf9;color:#6b8380}
+.library{padding:22px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.search{flex:1;min-width:240px;padding:15px 16px;border-radius:16px;border:1px solid #d8e8e2;background:#fff;color:var(--ink)}
+.tag{padding:10px 14px;border-radius:999px;background:#fff;border:1px solid #dbe9e4;color:#617b77;font-size:12px;font-weight:800}.tag.active{background:var(--green);color:#fff;border-color:var(--green)}
+.protocols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.protocol{padding:18px;border-radius:22px;border:1px solid #deebe6;background:linear-gradient(180deg,#fff,#fbfdfc)}.protocol .top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.protocol .icon-wrap{width:46px;height:46px;border-radius:16px;background:#eef9f5;border:1px solid #dbeae4;display:grid;place-items:center;color:#0b6b57}.protocol h4{margin:10px 0 8px;font-size:18px}.protocol p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.sim-wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:16px}.scene-art{min-height:205px;background:linear-gradient(135deg,#d7efe5,#f8fcfb 55%,#edf7f3);display:grid;place-items:center;font-size:100px;position:relative}.scene-art:after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle, rgba(19,165,125,.16) 0, rgba(19,165,125,.02) 60%, transparent 75%);filter:blur(2px)}
+.scene-body{padding:24px}.scene-body h4{margin:12px 0 10px;font-size:29px;letter-spacing:-.04em}.scene-body p{margin:0;color:var(--muted);line-height:1.62;font-size:14px}.options{display:grid;gap:11px;margin-top:18px}.option{padding:15px 16px;border-radius:18px;border:1px solid #d9e8e2;background:#fff;display:flex;align-items:center;gap:12px;text-align:left;transition:.16s ease}.option:hover:not(:disabled){transform:translateY(-1px);border-color:#0b6b57;background:#f3faf7}.option .letter{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:#f4faf8;border:1px solid #dbe8e3;font-weight:900}.option.good{background:#edf9f2;border-color:#179d65}.option.bad{background:#fff2ef;border-color:#d57261}.option:disabled{opacity:1;cursor:default}.feedback{margin-top:15px;padding:16px 18px;border-radius:18px;border:1px solid #d8ebe0;background:#eff8f3;font-size:13px;line-height:1.6}
+.sidepanel{padding:22px;display:grid;gap:14px;align-content:start}.mini{padding:16px;border-radius:18px;background:linear-gradient(180deg,#f8fbfa,#ffffff);border:1px solid #e1ece8}.mini h4{margin:0 0 8px;font-size:15px}.mini p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.quiz{padding:24px;max-width:950px;margin:0 auto}.quiz-top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.question{margin:18px 0 16px;font:800 30px/1.22 'Space Grotesk',Inter,sans-serif;letter-spacing:-.04em}.hidden{display:none!important}
+.analytics{padding:22px}.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.topic{display:grid;grid-template-columns:190px 1fr 56px;gap:12px;align-items:center;font-size:13px;font-weight:800;margin:15px 0}.callout{padding:18px 20px;border-radius:22px;background:linear-gradient(135deg,#f6fbf8,#eef7f2);border:1px solid #dcebe3}.callout h4{margin:0 0 8px;font-size:18px}.callout p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.tips{display:grid;gap:12px;margin-top:16px}.tip{display:flex;gap:12px;padding:14px;border-radius:18px;background:#fff;border:1px solid #e0ebe8}.tip .dot{width:36px;height:36px;border-radius:13px;background:#edf7f3;color:#0b6b57;display:grid;place-items:center;flex-shrink:0}
+.foot{margin-top:22px;text-align:center;color:#8fa3a0;font-size:11px}
+.fade-in{animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:1180px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-2,.dashboard-grid,.sim-wrap,.analytics-grid,.hero-grid{grid-template-columns:1fr}.protocols,.grid-3{grid-template-columns:1fr}}
+@media (max-width:900px){.app{display:block}.sidebar{position:static;height:auto;padding:12px}.nav{display:flex;overflow:auto;padding-bottom:6px}.nav button{min-width:max-content}.premium-box,.side-bottom{display:none}.topbar{height:auto;padding:14px 16px;flex-wrap:wrap}.content{padding:18px 14px 95px}.grid-4{grid-template-columns:1fr}.hero{padding:24px}.hero-stats{grid-template-columns:1fr 1fr 1fr}.topic{grid-template-columns:120px 1fr 48px}.float-chip{display:none}}
+@media (max-width:620px){.nav{position:fixed;left:0;right:0;bottom:0;background:#0c1b1a;border-top:1px solid #243a39;z-index:70;padding:10px 10px 12px;overflow-x:auto;scrollbar-width:none}.nav button{flex-direction:column;gap:6px;padding:9px 12px;font-size:11px;border-radius:14px}.nav button .ico{width:32px;height:32px}.top-actions .badge{display:none}.hero h2{font-size:30px}.hero-stats{grid-template-columns:1fr}.question{font-size:25px}.protocols{grid-template-columns:1fr}.topic{grid-template-columns:100px 1fr 42px}}
+
+/* --- Experiencia Signature: ilustración original, movimiento y tarjetas elevadas --- */
+:root{--electric:#97ffdc;--copper:#ffd27d}
+::selection{background:#a3f4d5;color:#0a3429}
+.hero{min-height:445px;isolation:isolate;background:linear-gradient(118deg,#071b20 0%,#083c3a 43%,#087c68 76%,#09ab82 100%)}
+.hero::before{width:580px;height:580px;right:-140px;top:-260px;background:radial-gradient(circle,#7affc737 0,transparent 65%)}
+.hero::after{width:600px;height:400px;left:48%;bottom:-260px;background:radial-gradient(circle,#61fff031,transparent 70%)}
+.hero h2{font-size:clamp(34px,4vw,55px);max-width:620px;letter-spacing:-.055em;text-wrap:balance}
+.hero-side{align-self:stretch;align-content:stretch;position:relative;min-height:340px}
+.hero-side .glass{position:relative;background:#ffffff16;border:1px solid #ffffff32;z-index:4;box-shadow:0 24px 45px #00191b2b}
+.hero-artwork{position:relative;height:270px;display:grid;place-items:center;isolation:isolate;filter:drop-shadow(0 25px 28px #001b1c65)}
+.hero-artwork::before{content:'';position:absolute;width:270px;height:270px;border-radius:50%;background:radial-gradient(circle,#8dffe035,transparent 68%);animation:pulseHalo 5s ease-in-out infinite}
+.hero-artwork svg{width:min(100%,440px);height:300px;overflow:visible;animation:artFloat 7s ease-in-out infinite}
+.hero-artwork .spark{animation:sparkle 2.8s ease-in-out infinite alternate;transform-origin:center}
+.hero-artwork .spark:nth-child(even){animation-delay:1.1s}
+.hero-grid{grid-template-columns:1.05fr .95fr;align-items:center}
+.hero-stats{position:relative;z-index:5}
+.hero-stat{box-shadow:inset 0 1px 0 #ffffff33;transition:transform .2s}
+.hero-stat:hover{transform:translateY(-5px)}
+.hero-stat b{font-size:27px}
+.hero .cta .btn-white{background:#c8ffe8;border:1px solid #eefff6;color:#07543f}
+.hero .cta .btn-white:hover{box-shadow:0 10px 30px #b4ffd34d}
+.stat,.feature,.protocol,.alert,.mini{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.stat:hover,.feature:hover,.protocol:hover{transform:translateY(-5px);box-shadow:0 22px 48px #103f3421;border-color:#b9d9cd}
+.stat .stat-ico{transition:transform .3s ease}
+.stat:hover .stat-ico{transform:rotate(-7deg) scale(1.08)}
+.feature:hover .feature-icon{background:linear-gradient(145deg,#d5fff0,#faffff);color:#028366;transform:rotate(-4deg)}
+.feature-icon{transition:transform .25s ease,background .25s ease}
+.btn:active,.option:active,.tag:active{transform:scale(.985)}
+.nav button.active{box-shadow:inset 3px 0 0 #45e6b5,inset 0 0 0 1px #ffffff12}
+.nav button .ico{transition:transform .25s}
+.nav button:hover .ico{transform:scale(1.13)}
+.section-head h3{position:relative}
+.alert.warn{border-left:4px solid #f4c262}.alert.good{border-left:4px solid #39bd8c}.alert.cyan{border-left:4px solid #54c8d8}
+.score-ring{background:conic-gradient(var(--green-2) 0 var(--score),#dcebe6 var(--score) 100%)}
+.bar>div{transition:width .75s cubic-bezier(.22,1,.36,1)}
+.premium-box:before{content:'✦';float:right;color:#9cf9d5;font-size:22px;filter:drop-shadow(0 0 12px #62ffbc)}
+.scene-art{color:#0b775e;background:linear-gradient(125deg,#d5f3e6,#f7fdfb 52%,#dceef2)}
+.scene-art i{position:relative;z-index:3;filter:drop-shadow(0 16px 14px #0b6b5733);animation:artFloat 5s ease-in-out infinite}
+.scene-art:before{content:'';position:absolute;width:160px;height:160px;border-radius:30px;transform:rotate(-20deg);border:2px solid #0a9b7850;box-shadow:0 0 0 18px #0b9b7810,0 0 0 46px #0b9b7809}
+.feedback{animation:fadeUp .35s ease}
+.hint-banner{display:flex;gap:13px;align-items:flex-start;padding:17px 18px;background:linear-gradient(110deg,#edf9f4,#f9fdfb);border:1px solid #cbeadd;border-radius:20px;color:#285c4d;margin:16px 0 18px}
+.hint-banner .circle{width:36px;height:36px;border-radius:13px;display:grid;place-items:center;background:#d8f4e8;color:#0c785c;flex-shrink:0}
+.hint-banner strong{font-size:13px}.hint-banner p{margin:5px 0 0;color:#64877a;font-size:12px;line-height:1.55}
+.demo-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:900;color:#478a74}
+.printable{display:none}
+@keyframes artFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-11px) rotate(.8deg)}}
+@keyframes pulseHalo{0%,100%{transform:scale(.95);opacity:.7}50%{transform:scale(1.12);opacity:1}}
+@keyframes sparkle{0%{opacity:.4;transform:scale(.7)}100%{opacity:1;transform:scale(1.15)}}
+@media(max-width:1180px){.hero-grid{grid-template-columns:1fr 1fr}.hero-artwork svg{max-width:340px}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-side{min-height:auto}.hero-artwork{height:225px}.hero-artwork svg{height:240px}.hero{min-height:auto}}
+@media(max-width:620px){.hero-artwork{height:185px}.hero-artwork svg{height:210px}.hero h2{font-size:31px}.hero-stats{grid-template-columns:repeat(3,1fr);gap:5px}.hero-stat{padding:11px 5px}.hero-stat b{font-size:22px}.hero-stat span{font-size:9px}.hero-side .glass{padding:14px}.hero-side{gap:8px}.hero{padding:22px}.cta{gap:7px}.cta .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+svg{vertical-align:-.12em;flex-shrink:0} .stat-ico svg,.feature-icon svg{width:26px;height:26px} .brand-logo svg{width:30px;height:30px}.nav button .ico svg{width:18px;height:18px} .scene-art svg{width:110px;height:110px}</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo"><i class="fa-solid fa-shield-halved"></i></div>
+      <div><h1>SEGURAPP</h1><small>Luxe • Operario de planta</small></div>
+    </div>
+    <div class="premium-box">
+      <div class="eyebrow">Reto final</div>
+      <h2>Seguridad en cada decisión</h2>
+      <p>Experiencia digital para recordar pautas, consultar normas, practicar escenarios y medir comprensión desde celular o computador.</p>
+    </div>
+    <div class="nav-label">Navegación</div>
+    <nav class="nav" id="nav">
+      <button class="active" data-view="inicio"><span class="ico"><i class="fa-solid fa-house"></i></span>Inicio</button>
+      <button data-view="academia"><span class="ico"><i class="fa-solid fa-graduation-cap"></i></span>Academia</button>
+      <button data-view="biblioteca"><span class="ico"><i class="fa-solid fa-book-open"></i></span>Biblioteca</button>
+      <button data-view="simulador"><span class="ico"><i class="fa-solid fa-gamepad"></i></span>Simulador</button>
+      <button data-view="evaluacion"><span class="ico"><i class="fa-solid fa-file-pen"></i></span>Evaluación</button>
+      <button data-view="analitica"><span class="ico"><i class="fa-solid fa-chart-line"></i></span>Analítica</button>
+    </nav>
+    <div class="side-bottom">
+      <div class="side-card"><h4>Contenido controlado</h4><p>Todas las pautas visibles provienen del Anexo A del documento del reto. No se agregan normas inventadas.</p></div>
+      <div class="side-card"><h4>Uso flexible</h4><p>Ideal para descansos cortos, refuerzos semanales y consulta rápida justo cuando surge la duda.</p></div>
+    </div>
+  </aside>
+  <main class="workspace">
+    <header class="topbar">
+      <div class="top-title"><b id="topTitle">Centro de seguridad</b><span id="topSub">Vista premium del prototipo para operario de planta.</span></div>
+      <div class="top-actions">
+        <div class="badge"><i class="fa-solid fa-bolt"></i> Actividades de 1 a 3 minutos</div>
+        <div class="badge"><i class="fa-solid fa-mobile-screen-button"></i> Adaptable a celular y PC</div>
+        <div class="profile"><div class="avatar">OP</div><div><b style="font-size:13px">Perfil: Operario</b><div style="font-size:11px;color:var(--muted)">Demo del reto</div></div></div>
+      </div>
+    </header>
+    <section class="content fade-in" id="root"></section>
+  </main>
+</div>
+<script>
+const PROTOCOLS=[
+{id:'epp-zonas',category:'Física',icon:'fa-helmet-safety',title:'EPP obligatorio en zonas amarillas',text:'Los elementos de protección personal: casco, gafas, protección auditiva y botas, son obligatorios en todas las zonas demarcadas en amarillo.'},
+{id:'bloqueo-maquina',category:'Física',icon:'fa-lock',title:'Bloqueo de máquinas',text:'Nadie interviene una máquina si no está detenida y bloqueada con candado y tarjeta personal.'},
+{id:'visitantes',category:'Física',icon:'fa-id-badge',title:'Visitantes y contratistas',text:'Visitantes y contratistas deben portar la escarapela visible y estar acompañados por un colaborador en las áreas de producción.'},
+{id:'contrasenas',category:'Digital',icon:'fa-key',title:'No compartir contraseñas',text:'No se comparten contraseñas y el computador se bloquea cada vez que la persona se levanta del puesto.'},
+{id:'phishing',category:'Digital',icon:'fa-envelope-circle-exclamation',title:'Correos sospechosos',text:'Ante un correo que pida datos, pagos urgentes o la descarga de archivos inesperados, no se abre ningún enlace y se reporta a la mesa de ayuda.'},
+{id:'usb',category:'Digital',icon:'fa-hard-drive',title:'USB personales',text:'No se conectan memorias USB personales a los equipos de la Empresa.'},
+{id:'ia-publica',category:'Digital',icon:'fa-robot',title:'Información interna en IA pública',text:'No se sube información interna, como fórmulas, listas de clientes o precios, a herramientas de IA públicas.'},
+{id:'reporte-incidente',category:'Emergencias',icon:'fa-bullhorn',title:'Reporte de incidentes',text:'Todo incidente, casi accidente o situación sospechosa se reporta en un plazo máximo de 24 horas al líder inmediato o a la línea interna de seguridad.'},
+{id:'evacuacion',category:'Emergencias',icon:'fa-triangle-exclamation',title:'Evacuación segura',text:'En una evacuación se suspende la tarea, no se usan ascensores, se sigue la ruta señalizada y cada persona se reporta con su líder en el punto de encuentro.'},
+{id:'pasillos-bodega',category:'Física',icon:'fa-person-walking',title:'Pasillos peatonales en bodega',text:'En bodega solo se camina por los pasillos peatonales demarcados en verde; está prohibido cruzar por las zonas de montacargas.'},
+{id:'ruta-chequeo',category:'Operativa',icon:'fa-truck',title:'Lista de chequeo del vehículo',text:'Antes de cada ruta, el conductor diligencia y reporta la lista de chequeo del vehículo.'},
+{id:'carga-visibilidad',category:'Operativa',icon:'fa-boxes-stacked',title:'Carga y visibilidad',text:'La carga no puede superar la altura marcada en el vehículo ni bloquear la visibilidad.'},
+{id:'despachos-redes',category:'Operativa',icon:'fa-ban',title:'Información de despachos',text:'Rutas, horarios y contenido de los despachos no se comparten en redes sociales ni con terceros.'}
+];
+const MODULES=[
+{id:'epp-zonas',time:'2 min',focus:'protección personal',goal:'Recordar el EPP antes de ingresar a una zona amarilla.'},
+{id:'bloqueo-maquina',time:'3 min',focus:'bloqueo y etiquetado',goal:'Prevenir intervenciones inseguras en máquinas.'},
+{id:'visitantes',time:'2 min',focus:'control de acceso',goal:'Aplicar acompañamiento correcto a visitantes y contratistas.'},
+{id:'phishing',time:'2 min',focus:'riesgo digital',goal:'Detectar correos sospechosos y evitar enlaces peligrosos.'},
+{id:'reporte-incidente',time:'2 min',focus:'cultura de reporte',goal:'Saber cuándo y cómo reportar incidentes y casi accidentes.'},
+{id:'evacuacion',time:'2 min',focus:'emergencias',goal:'Aplicar la evacuación correcta y reportarse con el líder.'}
+];
+const SCENARIOS=[
+{protocol:'bloqueo-maquina',scene:'<i class="fa-solid fa-gears"></i>',title:'Mantenimiento improvisado en línea',question:'Una máquina se detiene y un compañero propone revisar una pieza de inmediato. El equipo sigue energizado.',options:['Detener la máquina, bloquearla con candado y tarjeta personal antes de intervenirla','Abrir la tapa unos segundos porque el daño parece pequeño','Pedir a un compañero que sostenga el botón de apagado mientras revisas'],correct:0},
+{protocol:'epp-zonas',scene:'<i class="fa-solid fa-helmet-safety"></i>',title:'Ingreso rápido a zona amarilla',question:'Debes entrar a una zona amarilla por pocos minutos para entregar un material y olvidaste parte del EPP.',options:['Entrar rápido porque es solo un momento','Pedir los elementos faltantes y entrar con casco, gafas, protección auditiva y botas','Entrar solo con casco y botas'],correct:1},
+{protocol:'phishing',scene:'<i class="fa-solid fa-envelope-circle-exclamation"></i>',title:'Correo urgente sobre pagos',question:'En el computador aparece un mensaje que pide abrir un enlace para aprobar un pago urgente.',options:['Abrir el enlace para confirmar si es legítimo','Responder al remitente y pedir más datos','No abrir ningún enlace y reportarlo a la mesa de ayuda'],correct:2},
+{protocol:'reporte-incidente',scene:'<i class="fa-solid fa-person-falling-burst"></i>',title:'Casi accidente durante el turno',question:'Observas un casi accidente. El compañero no se lesiona, pero estuvo muy cerca de caer.',options:['No reportarlo porque no hubo lesión','Reportarlo dentro de las 24 horas al líder inmediato o línea interna','Esperar a la próxima capacitación para comentarlo'],correct:1}
+];
+const QUESTIONS=[
+{protocol:'epp-zonas',question:'¿Qué elementos son obligatorios en las zonas amarillas?',options:['Casco, gafas, protección auditiva y botas','Solo casco y botas','Los que el operario considere necesarios'],correct:0},
+{protocol:'bloqueo-maquina',question:'¿Cuándo puede intervenirse una máquina?',options:['Cuando el operario tenga experiencia','Cuando esté detenida y bloqueada con candado y tarjeta personal','Cuando el supervisor lo diga, aunque siga energizada'],correct:1},
+{protocol:'visitantes',question:'En producción, un visitante debe:',options:['Entrar con permiso verbal de cualquier colaborador','Portar escarapela visible y estar acompañado','Ingresar solo si usa casco'],correct:1},
+{protocol:'phishing',question:'Si recibes un correo con una petición urgente y un enlace inesperado, debes:',options:['Abrir el enlace para verificar','Reportarlo sin abrir enlaces','Reenviarlo a otro compañero'],correct:1},
+{protocol:'usb',question:'¿Se pueden conectar memorias USB personales a los equipos de la empresa?',options:['Sí, si tienen antivirus','No','Solo con autorización informal'],correct:1},
+{protocol:'ia-publica',question:'¿Qué está prohibido subir a herramientas de IA públicas?',options:['Información interna como fórmulas, listas de clientes o precios','Documentos personales','Horarios de descanso'],correct:0},
+{protocol:'reporte-incidente',question:'¿En qué plazo debe reportarse un incidente o casi accidente?',options:['Máximo en 24 horas','Solo si hay lesión','Cuando termine la semana'],correct:0},
+{protocol:'evacuacion',question:'En una evacuación, la conducta correcta es:',options:['Seguir trabajando hasta que llegue el líder','Usar el ascensor para salir más rápido','Suspender la tarea, seguir la ruta señalizada y reportarse en el punto de encuentro'],correct:2}
+];
+const TOPICS=[
+{label:'Protección personal',ids:['epp-zonas','visitantes','pasillos-bodega']},
+{label:'Intervención segura',ids:['bloqueo-maquina']},
+{label:'Seguridad digital',ids:['contrasenas','phishing','usb','ia-publica']},
+{label:'Reportes y emergencias',ids:['reporte-incidente','evacuacion']}
+];
+const SUGGESTIONS=[
+'Priorizar el refuerzo de bloqueo de máquinas porque un error en este tema puede causar eventos severos.',
+'Publicar el acceso rápido a SEGURAPP en los celulares del personal para facilitar la consulta en descansos.',
+'Usar microlecciones semanales y escenarios cortos para sostener la recordación después de la inducción.',
+'Analizar los temas con menor porcentaje de aciertos para planear campañas específicas por área.'
+];
+function protocol(id){return PROTOCOLS.find(p=>p.id===id)}
+function pct(a,b){return b?Math.round(a*100/b):0}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function blank(){return{lessons:[],scenarioHistory:[],attempts:[]}}
+let store=JSON.parse(localStorage.getItem('segurapp_luxe_data')||'null')||blank();
+function save(){localStorage.setItem('segurapp_luxe_data',JSON.stringify(store))}
+const state={view:'inicio',filter:'Todas',query:'',scene:0,quiz:null};
+const root=document.getElementById('root');
+const nav=document.getElementById('nav');
+nav.addEventListener('click',e=>{const b=e.target.closest('button[data-view]');if(!b)return;state.view=b.dataset.view;render()});
+function setHead(title,sub){document.getElementById('topTitle').textContent=title;document.getElementById('topSub').textContent=sub}
+function sectionHead(title,desc,right=''){return `<div class="section-head"><div><h3>${title}</h3><p>${desc}</p></div>${right}</div>`}
+function render(){[...nav.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));root.classList.remove('fade-in');void root.offsetWidth;root.classList.add('fade-in');if(state.view==='inicio')return home();if(state.view==='academia')return academy();if(state.view==='biblioteca')return library();if(state.view==='simulador')return simulator();if(state.view==='evaluacion')return evaluation();if(state.view==='analitica')return analytics()}
+function home(){
+  setHead('Centro de seguridad','Vista general del prototipo, prioridades y progreso.');
+  const avg=store.attempts.length?Math.round(store.attempts.reduce((a,b)=>a+b.score/b.total,0)/store.attempts.length*100):0;
+  root.innerHTML=`
+    <section class="hero">
+      <div class="float-chip float-one"><i class="fa-solid fa-shield-heart"></i> seguridad que se recuerda</div>
+      <div class="float-chip float-two"><i class="fa-solid fa-mobile-screen"></i> web + app instalable</div>
+      <div class="float-chip float-three"><i class="fa-solid fa-sparkles"></i> experiencia premium</div>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Plataforma visual de alto impacto</div>
+          <h2>Cada decisión segura comienza aquí.</h2>
+          <p>Aprende en minutos. Consulta en segundos. Practica decisiones reales. La seguridad de planta, al alcance de tu mano.</p>
+          <div class="cta">
+            <button class="btn btn-white" data-go="academia"><i class="fa-solid fa-play"></i> Empezar aprendizaje</button>
+            <button class="btn btn-outline" data-go="simulador"><i class="fa-solid fa-gamepad"></i> Abrir simulador</button>
+          </div>
+        </div>
+        <div class="hero-side"><div class="hero-artwork" aria-label="Ilustración de planta industrial con indicadores de seguridad" role="img">
+<svg viewBox="0 0 490 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs><linearGradient id="p" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d7fff1"/><stop offset="1" stop-color="#63d7b6"/></linearGradient><linearGradient id="machine" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#2c8173"/><stop offset="1" stop-color="#0b493e"/></linearGradient><linearGradient id="glass" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#effff6"/><stop offset="1" stop-color="#a5efd2"/></linearGradient><filter id="shadow"><feGaussianBlur stdDeviation="10"/></filter></defs>
+<ellipse cx="254" cy="293" rx="171" ry="26" fill="#00352f" opacity=".42" filter="url(#shadow)"/>
+<path d="M75 211 252 118 429 213 253 309Z" fill="#0d443d" stroke="#8afad4" stroke-width="1.5" opacity=".85"/>
+<path d="M75 211v22l178 100v-24Z" fill="#092e2d"/><path d="M253 309v24l176-100v-20Z" fill="#10564a"/>
+<path d="M101 213 251 133 400 213 253 294Z" fill="#2a816e" opacity=".45"/>
+<path d="M160 185 267 128 353 177 251 235Z" fill="url(#machine)" stroke="#72e4bf" stroke-width="2"/>
+<path d="M160 185v70l91 53v-73Z" fill="#0b4a42" stroke="#72e4bf" stroke-width="1.5"/><path d="M251 235v73l102-59v-72Z" fill="#156d5d" stroke="#72e4bf" stroke-width="1.5"/>
+<path d="M179 193v51l50 29v-52Z" fill="#063d37" stroke="#61d4aa"/><path d="M188 199v37l32 18v-37Z" fill="#46b69b" opacity=".45"/>
+<path d="M274 243 334 209v26l-60 35Z" fill="#092b29" stroke="#2b977b"/><path d="M286 245 312 230" stroke="#a0ffdb" stroke-width="4" stroke-linecap="round"/><path d="M286 255 324 233" stroke="#69d7b4" stroke-width="3" stroke-linecap="round"/>
+<path d="M181 170 255 130 320 167 248 207Z" fill="url(#glass)" opacity=".95"/><path d="M182 169v-37l73-41v39Z" fill="#215f58" stroke="#abffdf"/><path d="M255 91 320 128v39l-65-37Z" fill="#165d53" stroke="#abffdf"/>
+<path d="M194 148 245 120" stroke="#96ffe0" stroke-width="5" opacity=".9"/><path d="M270 117 302 134" stroke="#74dbb7" stroke-width="4" opacity=".8"/>
+<path d="M230 115v-35l26-14 28 16v36l-28 16Z" fill="#0c584e" stroke="#cbffed" stroke-width="2"/>
+<path d="M239 83 256 75 275 84l-1 22-18 13-18-11Z" fill="#bbffe8"/><path d="m246 95 8 8 15-19" fill="none" stroke="#0a7055" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M137 248 185 222l26 14-48 27Z" fill="#e2b65b"/><path d="M141 248 189 222M153 255l48-27" stroke="#183c33" stroke-width="6"/>
+<path d="M306 286 352 260l27 15-46 26Z" fill="#e2b65b"/><path d="M313 289l46-26M325 296l46-26" stroke="#173c32" stroke-width="6"/>
+<g class="spark"><circle cx="111" cy="106" r="5" fill="#baffdf"/><path d="M111 96v20M101 106h20" stroke="#baffdf" stroke-width="2"/></g><g class="spark"><path d="M380 109v18M371 118h18" stroke="#baffdf" stroke-width="2"/></g><g class="spark"><circle cx="414" cy="161" r="3" fill="#baffdf"/></g>
+<g transform="translate(335,43)"><rect width="99" height="38" rx="14" fill="#e4fff3"/><circle cx="19" cy="19" r="11" fill="#b9f4d8"/><path d="m14 19 4 4 8-9" fill="none" stroke="#167e60" stroke-width="3" stroke-linecap="round"/><text x="37" y="24" font-size="13" fill="#135a49" font-weight="800" font-family="Arial">PROTEGIDO</text></g>
+</svg></div>
+          <div class="glass"><h3><i class="fa-solid fa-bullseye"></i> Enfoque del reto</h3><p>Reforzar pautas de seguridad, facilitar la consulta, practicar decisiones y verificar la comprensión del operario con actividades cortas y visuales.</p></div>
+          <div class="hero-stats">
+            <div class="hero-stat"><b>48%</b><span>recordación a 30 días</span></div>
+            <div class="hero-stat"><b>22</b><span>eventos por omitir bloqueo o EPP</span></div>
+            <div class="hero-stat"><b>71%</b><span>no sabe dónde consultar (empresa)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section grid-4">
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-book-open-reader"></i></div><div class="kicker">Aprendizaje</div></div><b>${store.lessons.length}/${MODULES.length}</b><span>módulos revisados</span><small>Ruta de refuerzo para el operario, diseñada en formato de microaprendizaje.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-gamepad"></i></div><div class="kicker">Práctica</div></div><b>${store.scenarioHistory.length}</b><span>escenarios completados</span><small>Casos interactivos para entrenar respuesta ante situaciones frecuentes.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-chart-column"></i></div><div class="kicker">Desempeño</div></div><b>${store.attempts.length?avg+'%':'—'}</b><span>promedio de evaluación</span><small>Cálculo local con base en los intentos realizados en este navegador.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-layer-group"></i></div><div class="kicker">Consulta</div></div><b>${PROTOCOLS.length}</b><span>protocolos visibles</span><small>Biblioteca filtrable de pautas verificadas según el documento del reto.</small></article>
+    </div>
+
+    <div class="section">${sectionHead('Panel ejecutivo del prototipo','Resumen visual del estado de aprendizaje, prioridades de refuerzo y valor del proyecto.')}
+      <div class="card dashboard">
+        <div class="dashboard-grid">
+          <div class="score">
+            <div class="chip"><i class="fa-solid fa-wave-square"></i> Progreso de comprensión comprobado</div>
+            <div class="score-ring" style="--score:${store.attempts.length?avg:0}%"><div class="in"><strong>${store.attempts.length?avg+'%':'—'}</strong><span>evaluación local</span></div></div>
+            <div class="goal">
+              <div class="goal-item"><div class="row"><span>Recordación a 30 días (dato del caso)</span><span>48%</span></div><div class="bar"><div style="width:48%"></div></div></div>
+              <div class="goal-item"><div class="row"><span>Biblioteca del Anexo A</span><span>13 pautas</span></div><div class="bar"><div style="width:100%"></div></div></div>
+              <div class="goal-item"><div class="row"><span>Tu evaluación (si la realizas)</span><span>${store.attempts.length?avg+'%':'—'}</span></div><div class="bar"><div style="width:${store.attempts.length?avg:0}%"></div></div></div>
+            </div>
+          </div>
+          <div class="alerts">
+            <div class="alert warn"><strong><i class="fa-solid fa-triangle-exclamation"></i> Riesgo prioritario</strong><p>En planta, uno de los focos críticos es la omisión del bloqueo de máquinas y del EPP. Conviene mantener este tema visible en la ruta de aprendizaje y en los simuladores.</p></div>
+            <div class="alert good"><strong><i class="fa-solid fa-circle-check"></i> Fortalezas del proyecto</strong><p>La solución cumple varios propósitos del reto: refuerza pautas, facilita la consulta, simula escenarios y verifica la comprensión con un formato más atractivo.</p></div>
+            <div class="alert cyan"><strong><i class="fa-solid fa-lightbulb"></i> Sugerencia de uso</strong><p>Usar la app en descansos y al iniciar el turno puede ayudar a sostener el recuerdo de normas que normalmente se olvidan después de la capacitación.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">${sectionHead('Experiencias principales','Cada módulo busca resolver una necesidad real del perfil de operario de planta.')}
+      <div class="grid-3">
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div><div><div class="meta"><span class="chip">Academia</span><span class="chip dim">microaprendizaje</span></div><h4>Ruta de módulos visuales</h4><p>Seis microlecciones cortas con objetivos concretos, pensadas para recordar lo esencial sin sobrecargar al trabajador.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-book-open"></i></div><div><div class="meta"><span class="chip">Biblioteca</span><span class="chip dim">consulta rápida</span></div><h4>Protocolos listos para usar</h4><p>Normas claras y filtrables para resolver dudas en pocos segundos, sin depender de un PDF largo ni de correos extensos.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div><div><div class="meta"><span class="chip">Analítica</span><span class="chip dim">seguimiento</span></div><h4>Lectura simple del desempeño</h4><p>Muestra avances y temas por reforzar, para que la empresa identifique prioridades y el usuario vea su progreso.</p></div></article>
+      </div>
+    </div>
+
+    <div class="foot">Prototipo académico. Las cifras 48%, 22 y 71% corresponden al Anexo B; los resultados personales son únicamente de este navegador.</div>
+  `;
+  root.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{state.view=b.dataset.go;render()});
+}
+function academy(){
+  setHead('Academia','Microlecciones cortas para reforzar las pautas del Anexo A.');
+  root.innerHTML=`
+    <div class="hint-banner"><div class="circle"><i class="fa-solid fa-brain"></i></div><div><strong>Aprendizaje que se aplica, no solo que se lee</strong><p>Repasa cada pauta del Anexo A, marca lo que revisaste y después comprueba tu comprensión en el simulador o en la evaluación. Marcar una lección no significa haber aprobado.</p></div></div>${sectionHead('Ruta de aprendizaje','Módulos breves con foco claro, tiempo estimado y seguimiento del avance.',`<span class="chip"><i class="fa-solid fa-clock"></i> Actividades de 2–3 min</span>`)}
+    <div class="grid-3">${MODULES.map((m,i)=>{const p=protocol(m.id),done=store.lessons.includes(m.id);return `<article class="card feature"><div class="feature-icon"><i class="fa-solid ${p.icon}"></i></div><div style="flex:1"><div class="meta"><span class="chip">Módulo ${String(i+1).padStart(2,'0')}</span><span class="chip dim">${m.time}</span><span class="chip dim">${esc(m.focus)}</span></div><h4>${esc(p.title)}</h4><p>${esc(p.text)}</p><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:16px"><small style="color:#8ba09d">Objetivo: ${esc(m.goal)}</small><button class="btn ${done?'btn-soft':'btn-dark'}" data-lesson="${m.id}">${done?'<i class="fa-solid fa-check"></i> Revisado':'Marcar como revisado'}</button></div></div></article>`}).join('')}</div>
+    <div class="section card dashboard">
+      <div class="section-head" style="margin-top:0"><div><h3>Progreso de la ruta</h3><p>El seguimiento se almacena solamente en este navegador para fines de demostración.</p></div></div>
+      <div class="bar"><div style="width:${pct(store.lessons.length,MODULES.length)}%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px"><strong>${store.lessons.length} de ${MODULES.length} módulos revisados</strong><span style="color:var(--muted);font-size:13px">${pct(store.lessons.length,MODULES.length)}% completado</span></div>
+    </div>`;
+  root.querySelectorAll('[data-lesson]').forEach(btn=>btn.onclick=()=>{const id=btn.dataset.lesson;if(!store.lessons.includes(id))store.lessons.push(id);save();academy()});
+}
+function library(){
+  setHead('Biblioteca de protocolos','Consulta rápida por tema o categoría.');
+  const cats=['Todas','Física','Digital','Operativa','Emergencias'];
+  const list=PROTOCOLS.filter(p=>(state.filter==='Todas'||p.category===state.filter)&&(p.title+' '+p.text).toLowerCase().includes(state.query.toLowerCase()));
+  root.innerHTML=`
+    ${sectionHead('Consulta inmediata','Pensada para cuando surge una duda concreta durante el trabajo.')}
+    <div class="card library">
+      <div class="toolbar"><input id="searchInput" class="search" placeholder="Buscar: casco, máquina, correo, evacuación..." value="${esc(state.query)}">${cats.map(c=>`<button class="tag ${state.filter===c?'active':''}" data-filter="${c}">${c}</button>`).join('')}</div>
+      <div class="protocols">${list.map(p=>`<article class="protocol"><div class="top"><div><span class="chip">${esc(p.category)}</span><h4>${esc(p.title)}</h4></div><div class="icon-wrap"><i class="fa-solid ${p.icon}"></i></div></div><p>${esc(p.text)}</p><div style="margin-top:14px;color:#8fa19e;font-size:11px">Fuente: Anexo A • ID ${esc(p.id)}</div></article>`).join('')||'<div class="callout"><h4>Sin coincidencias</h4><p>No encontramos resultados con esa búsqueda. Intenta otra palabra o cambia el filtro.</p></div>'}</div>
+    </div>`;
+  root.querySelector('#searchInput').oninput=e=>{const pos=e.target.selectionStart;state.query=e.target.value;library();const field=root.querySelector('#searchInput');field.focus();field.setSelectionRange(pos,pos)};
+  root.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;library()});
+}
+function simulator(){
+  setHead('Simulador','Escenarios interactivos para practicar decisiones seguras.');
+  const s=SCENARIOS[state.scene];
+  root.innerHTML=`
+    ${sectionHead('Entrenamiento con escenarios','Practica la decisión correcta y recibe una explicación basada en la pauta oficial.',`<button class="btn btn-soft" id="nextScene"><i class="fa-solid fa-forward"></i> Siguiente caso</button>`)}
+    <div class="sim-wrap">
+      <article class="card">
+        <div class="scene-art">${s.scene}</div>
+        <div class="scene-body">
+          <span class="chip">Caso ${state.scene+1} de ${SCENARIOS.length}</span>
+          <h4>${esc(s.title)}</h4>
+          <p>${esc(s.question)}</p>
+          <div class="options">${s.options.map((o,i)=>`<button class="option" data-opt="${i}"><span class="letter">${'ABC'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
+          <div id="sceneFeedback"></div>
+        </div>
+      </article>
+      <aside class="card sidepanel">
+        <div class="mini"><h4><i class="fa-solid fa-crosshairs"></i> Competencia entrenada</h4><p>${esc(protocol(s.protocol).title)}</p></div>
+        <div class="mini"><h4><i class="fa-solid fa-file-circle-check"></i> Norma asociada</h4><p>${esc(protocol(s.protocol).text)}</p></div>
+        <div class="mini"><h4><i class="fa-solid fa-chart-simple"></i> Progreso de escenarios</h4><div class="bar" style="margin-top:10px"><div style="width:${pct(state.scene+1,SCENARIOS.length)}%"></div></div><p style="margin-top:10px">Caso ${state.scene+1} de ${SCENARIOS.length} abierto.</p></div>
+      </aside>
+    </div>`;
+  let locked=false;
+  root.querySelectorAll('[data-opt]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.opt;store.scenarioHistory.push({protocol:s.protocol,correct:ans===s.correct,date:new Date().toISOString()});save();root.querySelectorAll('[data-opt]').forEach(x=>{x.disabled=true;const i=+x.dataset.opt;if(i===s.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#sceneFeedback').innerHTML=`<div class="feedback"><strong>${ans===s.correct?'<i class="fa-solid fa-circle-check"></i> Decisión correcta':'<i class="fa-solid fa-circle-info"></i> Conviene reforzar esta situación'}</strong><br>${esc(protocol(s.protocol).text)}</div>`});
+  root.querySelector('#nextScene').onclick=()=>{state.scene=(state.scene+1)%SCENARIOS.length;simulator()}
+}
+function evaluation(){
+  setHead('Evaluación','Verificación rápida de comprensión y aplicación.');
+  if(!state.quiz)state.quiz={index:0,answers:[]};
+  if(state.quiz.index>=QUESTIONS.length){
+    const score=state.quiz.answers.filter(x=>x.correct).length;store.attempts.push({score,total:QUESTIONS.length,answers:state.quiz.answers,date:new Date().toISOString()});save();state.quiz=null;
+    root.innerHTML=`${sectionHead('Resultado del intento','Resumen de la evaluación realizada en este navegador.')}
+    <div class="card quiz" style="text-align:center">
+      <div style="font-size:74px;color:#0b6b57"><i class="fa-solid ${score>=6?'fa-trophy':'fa-book-open'}"></i></div>
+      <div style="font:800 45px/1 'Space Grotesk',Inter,sans-serif;margin-top:6px">${score}/${QUESTIONS.length}</div>
+      <p style="margin:8px 0 0;color:var(--muted)">${pct(score,QUESTIONS.length)}% de respuestas correctas.</p>
+      <div class="cta" style="justify-content:center;margin-top:22px"><button class="btn btn-dark" id="retry"><i class="fa-solid fa-rotate-right"></i> Reintentar</button><button class="btn btn-soft" id="goAnalytics"><i class="fa-solid fa-chart-line"></i> Ver analítica</button></div>
+    </div>`;
+    root.querySelector('#retry').onclick=()=>{state.quiz={index:0,answers:[]};evaluation()};root.querySelector('#goAnalytics').onclick=()=>{state.view='analitica';render()};return;
+  }
+  const q=QUESTIONS[state.quiz.index];
+  root.innerHTML=`${sectionHead('Evaluación interactiva','Cada respuesta se acompaña de retroalimentación basada en la norma oficial.')}
+    <div class="card quiz">
+      <div class="quiz-top"><span class="chip">Pregunta ${state.quiz.index+1} de ${QUESTIONS.length}</span><span style="color:var(--muted);font-size:13px">Progreso ${pct(state.quiz.index,QUESTIONS.length)}%</span></div>
+      <div class="bar" style="margin-top:12px"><div style="width:${pct(state.quiz.index,QUESTIONS.length)}%"></div></div>
+      <div class="question">${esc(q.question)}</div>
+      <div class="options">${q.options.map((o,i)=>`<button class="option" data-answer="${i}"><span class="letter">${'ABC'[i]}</span>${esc(o)}</button>`).join('')}</div>
+      <div id="quizFeedback"></div>
+      <div style="margin-top:18px"><button class="btn btn-dark hidden" id="nextQuestion"><i class="fa-solid fa-arrow-right"></i> Continuar</button></div>
+    </div>`;
+  let locked=false;
+  root.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.answer;state.quiz.answers.push({protocol:q.protocol,correct:ans===q.correct});root.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;const i=+x.dataset.answer;if(i===q.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#quizFeedback').innerHTML=`<div class="feedback"><strong>${ans===q.correct?'<i class="fa-solid fa-circle-check"></i> Respuesta correcta':'<i class="fa-solid fa-circle-info"></i> Respuesta para reforzar'}</strong><br>${esc(protocol(q.protocol).text)}</div>`;root.querySelector('#nextQuestion').classList.remove('hidden')});
+  root.querySelector('#nextQuestion').onclick=()=>{state.quiz.index++;evaluation()}
+}
+function analytics(){
+  setHead('Analítica','Resultados locales, lectura del desempeño y recomendaciones.');
+  const all=[];store.attempts.forEach(a=>a.answers.forEach(x=>all.push(x)));store.scenarioHistory.forEach(s=>all.push({protocol:s.protocol,correct:s.correct}));
+  const grouped={};all.forEach(x=>{grouped[x.protocol]=grouped[x.protocol]||{n:0,ok:0};grouped[x.protocol].n++;if(x.correct)grouped[x.protocol].ok++});
+  const topicData=TOPICS.map(t=>{let n=0,ok=0;t.ids.forEach(id=>{if(grouped[id]){n+=grouped[id].n;ok+=grouped[id].ok}});return{label:t.label,score:n?pct(ok,n):0,n}});
+  const avg=store.attempts.length?Math.round(store.attempts.reduce((a,b)=>a+b.score/b.total,0)/store.attempts.length*100):0;
+  root.innerHTML=`
+    ${sectionHead('Resumen analítico','Permite ver qué temas se dominan y cuáles necesitan refuerzo.',`<button class="btn btn-soft" id="exportData"><i class="fa-solid fa-file-export"></i> Exportar</button>`)}
+    <div class="grid-3">
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-chart-pie"></i></div><div class="kicker">Promedio</div></div><b>${store.attempts.length?avg+'%':'—'}</b><span>desempeño en evaluaciones</span><small>Promedio calculado con los intentos realizados en este dispositivo.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-person-rays"></i></div><div class="kicker">Casos</div></div><b>${store.scenarioHistory.length}</b><span>escenarios practicados</span><small>Entrenamiento aplicado mediante simulaciones interactivas.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-route"></i></div><div class="kicker">Ruta</div></div><b>${pct(store.lessons.length,MODULES.length)}%</b><span>avance en microlecciones</span><small>Progreso de la ruta de aprendizaje del operario.</small></article>
+    </div>
+    <div class="section analytics-grid">
+      <div class="card analytics">
+        <h3 style="margin:0 0 8px;font-size:21px">Desempeño por competencia</h3>
+        <p style="margin:0;color:var(--muted);font-size:13px">Integra resultados de simulación y evaluación para tener una lectura más útil.</p>
+        ${topicData.map(t=>`<div class="topic"><span>${esc(t.label)}</span><div class="bar"><div style="width:${t.score}%"></div></div><strong>${t.n?t.score+'%':'—'}</strong></div>`).join('')}
+      </div>
+      <div class="card analytics">
+        <div class="callout"><h4><i class="fa-solid fa-lightbulb"></i> Cómo interpretar el tablero</h4><p>Si una competencia aparece baja, la empresa tendría evidencia para reforzar esa pauta con más microcontenidos, recordatorios o escenarios específicos.</p></div>
+        <div class="tips">${SUGGESTIONS.map((s,i)=>`<div class="tip"><div class="dot"><i class="fa-solid ${['fa-bullseye','fa-mobile-screen-button','fa-brain','fa-bell'][i]}"></i></div><div><strong style="font-size:13px">Recomendación ${i+1}</strong><p style="margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.5">${esc(s)}</p></div></div>`).join('')}</div>
+      </div>
+    </div>
+    <div class="section card analytics">
+      <h3 style="margin:0 0 10px;font-size:21px">Privacidad y alcance del prototipo</h3>
+      <p style="margin:0;color:var(--muted);font-size:13px;line-height:1.65">Esta versión guarda resultados solo en el navegador para demostrar la lógica de seguimiento. No almacena datos personales ni se conecta a una base central. En una implementación real, la empresa necesitaría autenticación, permisos y almacenamiento autorizado.</p>
+      <div class="cta" style="margin-top:16px"><button class="btn btn-soft" id="resetData"><i class="fa-solid fa-trash"></i> Reiniciar datos</button></div>
+    </div>`;
+  root.querySelector('#exportData').onclick=()=>{const blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='segurapp-luxe-datos.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1200)};
+  root.querySelector('#resetData').onclick=()=>{if(confirm('¿Borrar los datos guardados en este navegador?')){store=blank();save();analytics()}}
+}
+document.addEventListener('keydown',event=>{
+  if(event.key==='/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){
+    event.preventDefault();state.view='biblioteca';render();const search=root.querySelector('#searchInput');if(search)search.focus();
+  }
+});
+
+const ICON_PATHS = {"house": "<path d=\"m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z\"/>", "shield-halved": "<path d=\"M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5Z\"/><path d=\"M12 2v20\"/>", "shield-heart": "<path d=\"M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5Z\"/><path d=\"M12 15s-4-2.5-4-4.5a2.1 2.1 0 0 1 4-1 2.1 2.1 0 0 1 4 1c0 2-4 4.5-4 4.5Z\"/>", "graduation-cap": "<path d=\"m2 9 10-5 10 5-10 5Z\"/><path d=\"M6 11v5c4 4 8 4 12 0v-5M22 9v7\"/>", "book-open": "<path d=\"M12 6c-2-2-5-3-9-2v15c4-1 7 0 9 2 2-2 5-3 9-2V4c-4-1-7 0-9 2Z\"/><path d=\"M12 6v15\"/>", "book-open-reader": "<path d=\"M12 20 3 17V5l9 3 9-3v12Z\"/><path d=\"M12 8v12M7 11l3 1M14 12l3-1\"/>", "gamepad": "<rect x=\"2\" y=\"7\" width=\"20\" height=\"12\" rx=\"5\"/><path d=\"M7 13h6M10 10v6\"/><circle cx=\"17\" cy=\"11\" r=\"1\" fill=\"currentColor\"/><circle cx=\"19\" cy=\"14\" r=\"1\" fill=\"currentColor\"/>", "file-pen": "<path d=\"M7 2h7l5 5v6M14 2v5h5M7 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6\"/><path d=\"m12 19 7-7 3 3-7 7-4 1Z\"/>", "chart-line": "<path d=\"M3 3v18h18\"/><path d=\"m6 16 5-5 4 3 5-7\"/>", "chart-column": "<path d=\"M3 21V10h5v11M10 21V4h5v17M17 21v-8h4v8\"/>", "chart-simple": "<path d=\"M4 20V7M10 20V12M16 20V4M22 20v-9\"/>", "chart-pie": "<path d=\"M11 2v9h9A9 9 0 0 0 11 2Z\"/><path d=\"M9 4a9 9 0 1 0 11 11H9Z\"/>", "bolt": "<path d=\"m13 2-9 12h7l-1 8 10-13h-7Z\"/>", "mobile-screen": "<rect x=\"6\" y=\"2\" width=\"12\" height=\"20\" rx=\"2\"/><path d=\"M10 18h4\"/>", "mobile-screen-button": "<rect x=\"6\" y=\"2\" width=\"12\" height=\"20\" rx=\"2\"/><circle cx=\"12\" cy=\"18\" r=\"1\"/>", "play": "<path d=\"m8 5 12 7-12 7Z\"/>", "brain": "<path d=\"M12 6a4 4 0 0 0-8 1 4 4 0 0 0 0 7 4 4 0 0 0 4 7h4M12 6a4 4 0 0 1 8 1 4 4 0 0 1 0 7 4 4 0 0 1-4 7h-4M12 4v18M8 10h4m0 5h4\"/>", "bullseye": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"1.5\" fill=\"currentColor\"/>", "circle-check": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m7 12 3 3 7-7\"/>", "check": "<path d=\"m4 12 5 5L20 6\"/>", "circle-info": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 11v6M12 7h.01\"/>", "lightbulb": "<path d=\"M9 18h6M10 22h4M8 15c-3-3-3-8 1-10 4-3 10 0 10 5 0 2-1 4-3 5l-1 3H9Z\"/>", "sparkles": "<path d=\"m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4Z\"/>", "helmet-safety": "<path d=\"M3 16h18M5 16v-2a7 7 0 0 1 14 0v2M10 7v6M14 7v6M3 19h18\"/>", "gears": "<circle cx=\"9\" cy=\"10\" r=\"4\"/><circle cx=\"18\" cy=\"17\" r=\"3\"/><path d=\"M9 3v3M9 14v3M2 10h3M13 10h3M4 5l2 2M12 13l2 2M15 17h-2M21 17h-1M18 13v1M18 20v2\"/>", "person-falling-burst": "<circle cx=\"12\" cy=\"4\" r=\"2\"/><path d=\"m8 11 5-3 4 4M13 8l-2 7-6 2M17 12l4 2M12 16l5 5M2 21h6M20 3l2 2\"/>", "envelope-circle-exclamation": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"m3 7 9 7 9-7M12 8v3M12 16h.01\"/>", "file-circle-check": "<path d=\"M6 2h9l4 4v8M15 2v4h4M6 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8\"/><circle cx=\"17\" cy=\"18\" r=\"4\"/><path d=\"m15.5 18 1.2 1.2 2-2\"/>", "file-export": "<path d=\"M5 2h10l4 4v6M15 2v4h4M5 2H4v20h8M13 18h8m-4-4 4 4-4 4\"/>", "forward": "<path d=\"m2 5 9 7-9 7ZM11 5l9 7-9 7ZM21 5v14\"/>", "route": "<circle cx=\"5\" cy=\"5\" r=\"2\"/><circle cx=\"19\" cy=\"19\" r=\"2\"/><path d=\"M5 7v2c0 4 14 0 14 5v3\"/>", "wave-square": "<path d=\"M2 12h4V6h5v12h5v-6h6\"/>", "rotate-right": "<path d=\"M20 11a8 8 0 1 1-3-6M20 3v6h-6\"/>", "layer-group": "<path d=\"m12 3 10 5-10 5L2 8Z M2 13l10 5 10-5M2 18l10 5 10-5\"/>", "person-rays": "<circle cx=\"12\" cy=\"6\" r=\"3\"/><path d=\"M4 21h16M12 9v8M7 12l5-3 5 3M9 21l3-4 3 4M2 6h2M20 6h2M3 2l2 2M19 4l2-2\"/>", "crosshairs": "<circle cx=\"12\" cy=\"12\" r=\"8\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 1v4M12 19v4M1 12h4M19 12h4\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/>", "arrow-right": "<path d=\"M4 12h16m-7-7 7 7-7 7\"/>", "triangle-exclamation": "<path d=\"m12 3 10 18H2Z\"/><path d=\"M12 9v5M12 18h.01\"/>", "trash": "<path d=\"M3 6h18M8 6V4h8v2M6 6l1 16h10l1-16M10 10v8M14 10v8\"/>"};
+function iconize(){
+  document.querySelectorAll('i.fa-solid').forEach(node=>{
+    const n=[...node.classList].find(x=>x.startsWith('fa-')&&x!=='fa-solid');
+    const key=n?n.slice(3):'';
+    const path=ICON_PATHS[key]||ICON_PATHS['sparkles'];
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('width','1em');svg.setAttribute('height','1em');
+    svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.8');svg.setAttribute('fill','none');
+    svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');svg.setAttribute('aria-hidden','true');
+    svg.innerHTML=path;node.replaceWith(svg);
+  });
+}
+const iconObserver = new MutationObserver(()=>iconize());
+iconObserver.observe(document.body,{childList:true,subtree:true});
+iconize();
+
+render();
+if("serviceWorker" in navigator && (location.protocol==="https:" || location.hostname==="localhost")){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(console.warn))}
+</script>
+</body>
+</html>
