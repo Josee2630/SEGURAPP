@@ -257,6 +257,14 @@ body{font-size:16px}button,input,.btn{min-height:48px}.nav button{min-height:52p
 .topbar{padding:12px 14px}.top-title b{font-size:19px}.top-title span{font-size:13px}
 .option{min-height:54px}
 }
+
+/* Recordatorios de turno */
+.rm-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.rm-card{padding:22px}.rm-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rm-field label{display:block;font-size:15px;font-weight:800;margin-bottom:7px}.rm-field input,.rm-field select,.rm-time{width:100%;min-height:50px;border:1px solid #afc9c0;border-radius:12px;background:#fff;color:#153b32;padding:10px;font:inherit;font-size:16px}
+.rm-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.rm-day{min-height:62px;border:1px solid #b6d5c9;background:#f6fcf9;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:15px;font-weight:800}.rm-day input{width:18px;height:18px;accent-color:#0b6b57}.rm-day:has(input:checked){background:#d9f6e7;border-color:#128265}
+.rm-note{font-size:15px;line-height:1.5;color:#49675e}.rm-warning{font-size:16px;line-height:1.5;font-weight:850;padding:15px;border-radius:15px;background:#fff4de;border:1px solid #e1b268;margin-bottom:16px}.rm-list{display:grid;gap:10px;margin:14px 0}.rm-item{display:grid;grid-template-columns:minmax(0,1fr) 116px;gap:10px;align-items:center;border:1px solid #d4e8de;border-radius:15px;padding:13px;background:#f8fcfa}.rm-item h4{font-size:16px;margin:0 0 4px}.rm-item p{font-size:15px;line-height:1.45;margin:0;color:#355c4e}.rm-item small{font-size:13px;color:#557a6e}.rm-item label{font-size:13px;font-weight:750}.rm-help{display:grid;grid-template-columns:1fr 1fr;gap:16px}.rm-help article{background:#f6faf7;border:1px solid #d9eae1;border-radius:15px;padding:15px}.rm-help ol{padding-left:20px}.rm-help li{margin:8px 0;line-height:1.5}
+#rmStatus{min-height:22px;font-size:15px;font-weight:750}
+@media(max-width:950px){.rm-layout{grid-template-columns:1fr}}@media(max-width:620px){.rm-fields,.rm-help{grid-template-columns:1fr}.rm-card{padding:16px}.rm-days{gap:3px}.rm-day{min-height:59px}.nav button{flex:1 0 84px;white-space:normal}.content{padding-bottom:136px}}
 </style>
 </head>
 <body>
@@ -279,6 +287,7 @@ body{font-size:16px}button,input,.btn{min-height:48px}.nav button{min-height:52p
       <button data-view="simulador"><span class="ico"><i class="fa-solid fa-gamepad"></i></span>¿Tú qué harías?</button>
       <button data-view="evaluacion"><span class="ico"><i class="fa-solid fa-file-pen"></i></span>Pruébate</button>
       <button data-view="analitica"><span class="ico"><i class="fa-solid fa-chart-line"></i></span>Mi avance</button>
+      <button data-view="recordatorios"><span class="ico"><i class="fa-solid fa-clock"></i></span>Mis recordatorios</button>
     </nav>
     <div class="side-bottom">
       <div class="side-card"><h4>Contenido controlado</h4><p>Todas las pautas visibles provienen del Anexo A del documento del reto. No agregamos normas inventadas.</p></div>
@@ -361,7 +370,7 @@ const nav=document.getElementById('nav');
 nav.addEventListener('click',e=>{const b=e.target.closest('button[data-view]');if(!b)return;state.view=b.dataset.view;render()});
 function setHead(title,sub){document.getElementById('topTitle').textContent=title;document.getElementById('topSub').textContent=sub}
 function sectionHead(title,desc,right=''){return `<div class="section-head"><div><h3>${title}</h3><p>${desc}</p></div>${right}</div>`}
-function render(){[...nav.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));root.classList.remove('fade-in');void root.offsetWidth;root.classList.add('fade-in');if(state.view==='inicio')return home();if(state.view==='academia')return academy();if(state.view==='biblioteca')return library();if(state.view==='simulador')return simulator();if(state.view==='evaluacion')return evaluation();if(state.view==='analitica')return analytics()}
+function render(){[...nav.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));root.classList.remove('fade-in');void root.offsetWidth;root.classList.add('fade-in');if(state.view==='inicio')return home();if(state.view==='academia')return academy();if(state.view==='biblioteca')return library();if(state.view==='simulador')return simulator();if(state.view==='evaluacion')return evaluation();if(state.view==='analitica')return analytics();if(state.view==='recordatorios')return reminders()}
 function home(){
   setHead('Centro de seguridad','Vista general del prototipo, prioridades y progreso.');
   const avg=store.attempts.length?Math.round(store.attempts.reduce((a,b)=>a+b.score/b.total,0)/store.attempts.length*100):0;
@@ -529,6 +538,145 @@ function evaluation(){
   root.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.answer;state.quiz.answers.push({protocol:q.protocol,correct:ans===q.correct});root.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;const i=+x.dataset.answer;if(i===q.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#quizFeedback').innerHTML=`<div class="feedback"><strong>${ans===q.correct?'<i class="fa-solid fa-circle-check"></i> Respuesta correcta':'<i class="fa-solid fa-circle-info"></i> Respuesta para reforzar'}</strong><br>${esc(protocol(q.protocol).simple)}<div class="official"><strong>Norma oficial</strong><p>${esc(protocol(q.protocol).text)}</p></div></div>`;root.querySelector('#nextQuestion').classList.remove('hidden')});
   root.querySelector('#nextQuestion').onclick=()=>{state.quiz.index++;evaluation()}
 }
+
+const RM_KEY='segurapp_horario_v1';
+const RM_DAYS=[['MO','L'],['TU','M'],['WE','X'],['TH','J'],['FR','V'],['SA','S'],['SU','D']];
+const RM_ITEMS=[
+{id:'entrada',name:'Antes de entrar',message:'¿Tienes casco, gafas, protección auditiva y botas para la zona amarilla?',note:'10 minutos antes de entrar'},
+{id:'manana',name:'Descanso de la mañana',message:'Los visitantes llevan escarapela visible y van acompañados en producción.',note:'A mitad del tiempo antes del almuerzo'},
+{id:'almuerzo',name:'Regreso del almuerzo',message:'Antes de intervenir una máquina: detenla, pon candado y tarjeta personal.',note:'5 minutos antes de terminar de almorzar'},
+{id:'tarde',name:'Descanso de la tarde',message:'Reporta incidentes y casi accidentes dentro de las próximas 24 horas.',note:'A mitad del tiempo después del almuerzo'}
+];
+function rmDefault(){return{entry:'06:00',exit:'14:00',lunch:'10:00',duration:60,days:['MO','TU','WE','TH','FR'],afternoon:true,overrides:{}}}
+function rmLoad(){try{const x=JSON.parse(localStorage.getItem(RM_KEY));return x&&typeof x==='object'?{...rmDefault(),...x,overrides:x.overrides||{}}:rmDefault()}catch{return rmDefault()}}
+let rmSaved=rmLoad();
+function rmMinutes(t){if(!/^\d\d:\d\d$/.test(String(t)))return NaN;const a=t.split(':').map(Number);return a[0]<24&&a[1]<60?a[0]*60+a[1]:NaN}
+function rmClock(m){return String((Math.floor(m/60)%24+24)%24).padStart(2,'0')+':'+String((m%60+60)%60).padStart(2,'0')}
+function rmPlan(s){
+ const a=rmMinutes(s.entry),b=rmMinutes(s.lunch),c=rmMinutes(s.exit),d=Number(s.duration);
+ if(![a,b,c].every(Number.isFinite))throw Error('Revisa las horas del turno.');
+ if(!Number.isInteger(d)||d<15||d>180)throw Error('El almuerzo debe durar entre 15 y 180 minutos.');
+ if(!Array.isArray(s.days)||!s.days.length||s.days.some(x=>!RM_DAYS.some(v=>v[0]===x)))throw Error('Marca los días de trabajo.');
+ let lunch=b;while(lunch<=a)lunch+=1440;
+ let end=c;while(end<=lunch+d)end+=1440;
+ if(end-a>1440||lunch-a<15)throw Error('Revisa el orden de las horas. El turno debe durar menos de 24 horas.');
+ const base=[a-10,Math.floor((a+lunch)/2),lunch+d-5,Math.floor((lunch+d+end)/2)];
+ return RM_ITEMS.filter((x,i)=>i!==3||s.afternoon).map(x=>{
+  const i=RM_ITEMS.indexOf(x),n=rmMinutes(s.overrides?.[x.id]);
+  return {...x,automatic:base[i],minute:Number.isFinite(n)?Math.floor(base[i]/1440)*1440+n:base[i]};
+ });
+}
+function rmRead(){
+ const s={...rmSaved,overrides:{...rmSaved.overrides}};
+ for(const [k,id] of [['entry','rmEntry'],['exit','rmExit'],['lunch','rmLunch'],['duration','rmDuration']])s[k]=document.getElementById(id).value;
+ s.duration=Number(s.duration);
+ s.days=[...document.querySelectorAll('[data-rm-day]:checked')].map(x=>x.value);
+ s.afternoon=document.getElementById('rmAfternoon').checked;
+ return s;
+}
+function rmStatus(message,error=false){const x=document.getElementById('rmStatus');if(x){x.textContent=message;x.style.color=error?'#aa392b':'#11634f'}}
+function rmPreview(clear=false){
+ try{
+  const s=rmRead();if(clear){s.overrides={};rmSaved.overrides={}}
+  const items=rmPlan(s);
+  document.getElementById('rmPreview').innerHTML='<p class="rm-note">Días: '+esc(s.days.map(d=>RM_DAYS.find(x=>x[0]===d)[1]).join(', '))+'</p><div class="rm-list">'+items.map(x=>
+  '<div class="rm-item"><div><h4>'+esc(x.name)+'</h4><p>'+esc(x.message)+'</p><small>'+esc(x.note)+'</small></div><label>Hora<input class="rm-time" data-rm-time="'+x.id+'" type="time" value="'+rmClock(x.minute)+'" aria-label="Hora: '+esc(x.name)+'"></label></div>').join('')+'</div>';
+  return s;
+ }catch(e){document.getElementById('rmPreview').innerHTML='<p class="rm-note">'+esc(e.message)+'</p>';rmStatus(e.message,true);return null}
+}
+function rmIcsText(v){return String(v).replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/;/g,'\\;').replace(/,/g,'\\,')}
+function rmDateBogota(date){const p={};for(const x of new Intl.DateTimeFormat('en-US',{timeZone:'America/Bogota',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date))if(x.type!=='literal')p[x.type]=+x.value;return Date.UTC(p.year,p.month-1,p.day)}
+function rmDateStamp(ms){return new Date(ms).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')}
+function rmFirstDay(s,relative){
+ const today=rmDateBogota(new Date()),codes=['SU','MO','TU','WE','TH','FR','SA'];
+ for(let i=0;i<15;i++){const utcDay=today+i*86400000;if(!s.days.includes(codes[new Date(utcDay).getUTCDay()]))continue;if(utcDay+relative*60000+5*3600000>Date.now())return utcDay}
+ throw Error('No hay un día de trabajo próximo.');
+}
+function rmLocalStamp(utcDay,relative){
+ const day=new Date(utcDay+Math.floor(relative/1440)*86400000);
+ return String(day.getUTCFullYear()).padStart(4,'0')+String(day.getUTCMonth()+1).padStart(2,'0')+String(day.getUTCDate()).padStart(2,'0')+'T'+rmClock(relative).replace(':','')+'00';
+}
+function rmFold(line){let out='',part='',n=0;const enc=new TextEncoder();for(const ch of line){const size=enc.encode(ch).length;if(n+size>75){out+=part+'\r\n ';part='';n=1}part+=ch;n+=size}return out+part}
+function rmDownload(){
+ const s=rmRead();let items;
+ try{
+  // The editor changes clock time; keep the calculated calendar-day offset for overnight shifts.
+  items=rmPlan(s);
+  document.querySelectorAll('[data-rm-time]').forEach(input=>{
+   const x=items.find(v=>v.id===input.dataset.rmTime);if(!x)return;
+   if(!Number.isFinite(rmMinutes(input.value)))throw Error('Corrige las horas de los avisos.');
+   if(rmMinutes(input.value)!==rmMinutes(rmClock(x.automatic)))s.overrides[x.id]=input.value;else delete s.overrides[x.id];
+  });
+  items=rmPlan(s);
+  rmSaved=s;localStorage.setItem(RM_KEY,JSON.stringify(s));
+ }catch(e){rmStatus(e.message,true);return}
+ const appUrl='https://josee2630.github.io/SEGURAPP/';
+ const days=['SU','MO','TU','WE','TH','FR','SA'];
+ const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//SEGURAPP EAFIT//Recordatorios//ES','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+ 'X-WR-CALNAME:SEGURAPP - Mis recordatorios','X-WR-TIMEZONE:America/Bogota','BEGIN:VTIMEZONE','TZID:America/Bogota',
+ 'BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:-0500','TZOFFSETTO:-0500','TZNAME:COT','END:STANDARD','END:VTIMEZONE'];
+ try{
+  for(const x of items){
+   const start=rmLocalStamp(rmFirstDay(s,x.minute),x.minute);
+   const shift=Math.floor(x.minute/1440);
+   const byday=[...new Set(s.days.map(d=>days[(days.indexOf(d)+shift+7)%7]))].join(',');
+   const summary='SEGURAPP: '+x.name;
+   const desc=x.message+'\nRevisa la app solo en descansos, nunca operando una máquina.\n'+appUrl;
+   lines.push('BEGIN:VEVENT','UID:segurapp-'+x.id+'-'+start+'@local','DTSTAMP:'+rmDateStamp(Date.now()),
+    'DTSTART;TZID=America/Bogota:'+start,'DURATION:PT1M','RRULE:FREQ=WEEKLY;WKST=MO;BYDAY='+byday,
+    'SUMMARY:'+rmIcsText(summary),'DESCRIPTION:'+rmIcsText(desc),'URL:'+appUrl,
+    'BEGIN:VALARM','TRIGGER:PT0S','ACTION:DISPLAY','DESCRIPTION:'+rmIcsText(x.message),'END:VALARM','END:VEVENT');
+  }
+ }catch(e){rmStatus(e.message,true);return}
+ lines.push('END:VCALENDAR');
+ const data=lines.map(rmFold).join('\r\n')+'\r\n';
+ const url=URL.createObjectURL(new Blob([data],{type:'text/calendar;charset=utf-8'}));
+ const a=document.createElement('a');a.href=url;a.download='SEGURAPP_Mis_Recordatorios.ics';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+ rmStatus('Calendario descargado. Impórtalo y revisa sus alarmas.');
+}
+function reminders(){
+ setHead('Mis recordatorios','Elige tu horario y revisa los avisos en tus descansos.');
+ const s=rmSaved;
+ const days=RM_DAYS.map(([code,label])=>'<label class="rm-day">'+label+'<input data-rm-day type="checkbox" value="'+code+'" '+(s.days.includes(code)?'checked':'')+' aria-label="Trabajas '+code+'"></label>').join('');
+ root.innerHTML=`
+ <div class="rm-warning">🛑 Revisa la app solo en descansos, nunca operando una máquina.</div>
+ <div class="rm-layout">
+ <section class="card rm-card">
+  <h3>Tu horario</h3><p class="rm-note">No pedimos nombre, teléfono ni correo.</p>
+  <div class="rm-fields">
+   <div class="rm-field"><label for="rmEntry">Entrada</label><input type="time" id="rmEntry" value="${esc(s.entry)}"></div>
+   <div class="rm-field"><label for="rmExit">Salida</label><input type="time" id="rmExit" value="${esc(s.exit)}"></div>
+   <div class="rm-field"><label for="rmLunch">Inicio del almuerzo</label><input type="time" id="rmLunch" value="${esc(s.lunch)}"></div>
+   <div class="rm-field"><label for="rmDuration">Duración del almuerzo</label><select id="rmDuration">${[15,30,45,60,75,90,120,180].map(n=>'<option value="'+n+'" '+(Number(s.duration)===n?'selected':'')+'>'+n+' minutos</option>').join('')}</select></div>
+  </div>
+  <h4 style="margin:20px 0 10px">Días de trabajo</h4><div class="rm-days">${days}</div>
+  <label style="display:flex;gap:10px;align-items:center;margin-top:16px;font-weight:750"><input type="checkbox" id="rmAfternoon" style="width:22px;height:22px;accent-color:#0b6b57" ${s.afternoon?'checked':''}> Incluir descanso de la tarde</label>
+  <div class="cta"><button type="button" class="btn btn-dark" id="rmCalculate">Calcular horas</button><button type="button" class="btn btn-soft" id="rmSave">Guardar horario</button></div>
+  <p id="rmStatus" role="status" aria-live="polite"></p>
+  <p class="rm-note">Tu horario se guarda solo en este navegador.</p>
+ </section>
+ <section class="card rm-card">
+  <h3>Tus avisos</h3><p class="rm-note">Confirma las horas. Puedes cambiar cada una.</p>
+  <div id="rmPreview"></div>
+  <button class="btn btn-dark" id="rmDownload" type="button">📅 Agregar a mi calendario</button>
+  <p class="rm-note">Las alarmas dependen de tu calendario y sus permisos.</p>
+ </section></div>
+ <section class="section card rm-card">
+  <h3>Cómo abrir el archivo .ics</h3>
+  <div class="rm-help">
+   <article><h4>📱 Android · Google Calendar</h4><ol><li>Descarga el calendario con el botón.</li><li>Abre Google Calendar en la web. Busca Configuración → Importar y exportar.</li><li>Importa el .ics. Comprueba las alarmas en tu celular.</li></ol><p class="rm-note">Google Calendar móvil no siempre importa archivos .ics. Puedes usar su página web.</p></article>
+   <article><h4>🍎 iPhone · Calendario</h4><ol><li>Descarga el .ics y guárdalo en Archivos.</li><li>Abre el archivo. Busca la opción de añadir al calendario.</li><li>Confirma los eventos y comprueba las alarmas.</li></ol><p class="rm-note">Si esa opción no aparece, importa el archivo mediante un calendario compatible.</p></article>
+  </div>
+ </section>`;
+ rmPreview(false);
+ document.getElementById('rmCalculate').onclick=()=>{if(rmPreview(true))rmStatus('Horas calculadas. Puedes cambiarlas.')};
+ document.getElementById('rmSave').onclick=()=>{
+  try{const draft=rmRead();rmPlan(draft);rmSaved=draft;localStorage.setItem(RM_KEY,JSON.stringify(draft));rmStatus('Horario guardado en este navegador.')}
+  catch(e){rmStatus(e.message,true)}
+ };
+ document.getElementById('rmDownload').onclick=rmDownload;
+}
+
 function analytics(){
   setHead('Mi avance','Mira tus aciertos. Repasa lo que falta.');
   const all=[];store.attempts.forEach(a=>a.answers.forEach(x=>all.push(x)));store.scenarioHistory.forEach(s=>all.push({protocol:s.protocol,correct:s.correct}));
