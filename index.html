@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b6b57">
-<title>SEGURAPP Luxe · Plataforma inteligente de seguridad</title>
+<title>SEGURAPP · Vuelve seguro a casa</title>
 <meta name="description" content="SEGURAPP Signature: plataforma educativa de seguridad para operarios de planta, reto NODO EAFIT.">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icons/icon-192.png" sizes="192x192">
@@ -242,28 +242,43 @@ button:focus-visible,input:focus-visible{outline:3px solid #f0b44a;outline-offse
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-side{min-height:auto}.hero-artwork{height:225px}.hero-artwork svg{height:240px}.hero{min-height:auto}}
 @media(max-width:620px){.hero-artwork{height:185px}.hero-artwork svg{height:210px}.hero h2{font-size:31px}.hero-stats{grid-template-columns:repeat(3,1fr);gap:5px}.hero-stat{padding:11px 5px}.hero-stat b{font-size:22px}.hero-stat span{font-size:9px}.hero-side .glass{padding:14px}.hero-side{gap:8px}.hero{padding:22px}.cta{gap:7px}.cta .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-svg{vertical-align:-.12em;flex-shrink:0} .stat-ico svg,.feature-icon svg{width:26px;height:26px} .brand-logo svg{width:30px;height:30px}.nav button .ico svg{width:18px;height:18px} .scene-art svg{width:110px;height:110px}</style>
+svg{vertical-align:-.12em;flex-shrink:0} .stat-ico svg,.feature-icon svg{width:26px;height:26px} .brand-logo svg{width:30px;height:30px}.nav button .ico svg{width:18px;height:18px} .scene-art svg{width:110px;height:110px}
+/* SEGURAPP para operario: consejos claros, norma exacta y celular */
+body{font-size:16px}button,input,.btn{min-height:48px}.nav button{min-height:52px}
+.simple-rule,.protocol>p{font-size:17px!important;font-weight:750;line-height:1.5;color:#133b32}
+.official{margin-top:12px;padding:12px 14px;border-left:3px solid #31886d;border-radius:8px;background:#f0f7f4}
+.official strong{display:block;font-size:13px;color:#246454;margin-bottom:6px}
+.official p,.official-note{font-size:14px!important;line-height:1.55!important;color:#506762!important;font-weight:450}
+@media(max-width:620px){
+.sidebar{padding:0;height:0}.brand,.nav-label{display:none}
+.nav{display:flex;gap:5px;align-items:stretch;padding:8px 8px max(8px,env(safe-area-inset-bottom));overflow-x:auto}
+.nav button{flex:1 0 79px;min-height:54px;font-size:11px;line-height:1.14;padding:7px 4px;white-space:normal}
+.nav button .ico{width:23px;height:23px}.content{padding:18px 14px 125px}
+.topbar{padding:12px 14px}.top-title b{font-size:19px}.top-title span{font-size:13px}
+.option{min-height:54px}
+}
+</style>
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
     <div class="brand">
       <div class="brand-logo"><i class="fa-solid fa-shield-halved"></i></div>
-      <div><h1>SEGURAPP</h1><small>Luxe • Operario de planta</small></div>
+      <div><h1>SEGURAPP</h1><small>Tu seguridad en planta</small></div>
     </div>
     <div class="premium-box">
       <div class="eyebrow">Reto final</div>
       <h2>Seguridad en cada decisión</h2>
-      <p>Experiencia digital para recordar pautas, consultar normas, practicar escenarios y medir comprensión desde celular o computador.</p>
+      <p>Repasa normas. Practica decisiones. Vuelve a casa seguro.</p>
     </div>
     <div class="nav-label">Navegación</div>
     <nav class="nav" id="nav">
-      <button class="active" data-view="inicio"><span class="ico"><i class="fa-solid fa-house"></i></span>Inicio</button>
-      <button data-view="academia"><span class="ico"><i class="fa-solid fa-graduation-cap"></i></span>Academia</button>
-      <button data-view="biblioteca"><span class="ico"><i class="fa-solid fa-book-open"></i></span>Biblioteca</button>
-      <button data-view="simulador"><span class="ico"><i class="fa-solid fa-gamepad"></i></span>Simulador</button>
-      <button data-view="evaluacion"><span class="ico"><i class="fa-solid fa-file-pen"></i></span>Evaluación</button>
-      <button data-view="analitica"><span class="ico"><i class="fa-solid fa-chart-line"></i></span>Analítica</button>
+      <button class="active" data-view="inicio"><span class="ico"><i class="fa-solid fa-house"></i></span>Hoy</button>
+      <button data-view="academia"><span class="ico"><i class="fa-solid fa-graduation-cap"></i></span>Aprende en 1 minuto</button>
+      <button data-view="biblioteca"><span class="ico"><i class="fa-solid fa-book-open"></i></span>¿Qué hago si…?</button>
+      <button data-view="simulador"><span class="ico"><i class="fa-solid fa-gamepad"></i></span>¿Tú qué harías?</button>
+      <button data-view="evaluacion"><span class="ico"><i class="fa-solid fa-file-pen"></i></span>Pruébate</button>
+      <button data-view="analitica"><span class="ico"><i class="fa-solid fa-chart-line"></i></span>Mi avance</button>
     </nav>
     <div class="side-bottom">
       <div class="side-card"><h4>Contenido controlado</h4><p>Todas las pautas visibles provienen del Anexo A del documento del reto. No se agregan normas inventadas.</p></div>
@@ -272,10 +287,10 @@ svg{vertical-align:-.12em;flex-shrink:0} .stat-ico svg,.feature-icon svg{width:2
   </aside>
   <main class="workspace">
     <header class="topbar">
-      <div class="top-title"><b id="topTitle">Centro de seguridad</b><span id="topSub">Vista premium del prototipo para operario de planta.</span></div>
+      <div class="top-title"><b id="topTitle">Centro de seguridad</b><span id="topSub">Repasa antes de volver al turno.</span></div>
       <div class="top-actions">
-        <div class="badge"><i class="fa-solid fa-bolt"></i> Actividades de 1 a 3 minutos</div>
-        <div class="badge"><i class="fa-solid fa-mobile-screen-button"></i> Adaptable a celular y PC</div>
+        <div class="badge"><i class="fa-solid fa-bolt"></i> Repasos cortos</div>
+        <div class="badge"><i class="fa-solid fa-mobile-screen-button"></i> Úsala en tus descansos</div>
         <div class="profile"><div class="avatar">OP</div><div><b style="font-size:13px">Perfil: Operario</b><div style="font-size:11px;color:var(--muted)">Demo del reto</div></div></div>
       </div>
     </header>
@@ -284,19 +299,19 @@ svg{vertical-align:-.12em;flex-shrink:0} .stat-ico svg,.feature-icon svg{width:2
 </div>
 <script>
 const PROTOCOLS=[
-{id:'epp-zonas',category:'Física',icon:'fa-helmet-safety',title:'EPP obligatorio en zonas amarillas',text:'Los elementos de protección personal: casco, gafas, protección auditiva y botas, son obligatorios en todas las zonas demarcadas en amarillo.'},
-{id:'bloqueo-maquina',category:'Física',icon:'fa-lock',title:'Bloqueo de máquinas',text:'Nadie interviene una máquina si no está detenida y bloqueada con candado y tarjeta personal.'},
-{id:'visitantes',category:'Física',icon:'fa-id-badge',title:'Visitantes y contratistas',text:'Visitantes y contratistas deben portar la escarapela visible y estar acompañados por un colaborador en las áreas de producción.'},
-{id:'contrasenas',category:'Digital',icon:'fa-key',title:'No compartir contraseñas',text:'No se comparten contraseñas y el computador se bloquea cada vez que la persona se levanta del puesto.'},
-{id:'phishing',category:'Digital',icon:'fa-envelope-circle-exclamation',title:'Correos sospechosos',text:'Ante un correo que pida datos, pagos urgentes o la descarga de archivos inesperados, no se abre ningún enlace y se reporta a la mesa de ayuda.'},
-{id:'usb',category:'Digital',icon:'fa-hard-drive',title:'USB personales',text:'No se conectan memorias USB personales a los equipos de la Empresa.'},
-{id:'ia-publica',category:'Digital',icon:'fa-robot',title:'Información interna en IA pública',text:'No se sube información interna, como fórmulas, listas de clientes o precios, a herramientas de IA públicas.'},
-{id:'reporte-incidente',category:'Emergencias',icon:'fa-bullhorn',title:'Reporte de incidentes',text:'Todo incidente, casi accidente o situación sospechosa se reporta en un plazo máximo de 24 horas al líder inmediato o a la línea interna de seguridad.'},
-{id:'evacuacion',category:'Emergencias',icon:'fa-triangle-exclamation',title:'Evacuación segura',text:'En una evacuación se suspende la tarea, no se usan ascensores, se sigue la ruta señalizada y cada persona se reporta con su líder en el punto de encuentro.'},
-{id:'pasillos-bodega',category:'Física',icon:'fa-person-walking',title:'Pasillos peatonales en bodega',text:'En bodega solo se camina por los pasillos peatonales demarcados en verde; está prohibido cruzar por las zonas de montacargas.'},
-{id:'ruta-chequeo',category:'Operativa',icon:'fa-truck',title:'Lista de chequeo del vehículo',text:'Antes de cada ruta, el conductor diligencia y reporta la lista de chequeo del vehículo.'},
-{id:'carga-visibilidad',category:'Operativa',icon:'fa-boxes-stacked',title:'Carga y visibilidad',text:'La carga no puede superar la altura marcada en el vehículo ni bloquear la visibilidad.'},
-{id:'despachos-redes',category:'Operativa',icon:'fa-ban',title:'Información de despachos',text:'Rutas, horarios y contenido de los despachos no se comparten en redes sociales ni con terceros.'}
+{id:'epp-zonas',category:'Planta',icon:'fa-helmet-safety',title:'EPP obligatorio en zonas amarillas',simple:"Ponte casco, gafas, protección auditiva y botas en zonas amarillas.",text:'Los elementos de protección personal: casco, gafas, protección auditiva y botas, son obligatorios en todas las zonas demarcadas en amarillo.'},
+{id:'bloqueo-maquina',category:'Planta',icon:'fa-lock',title:'Bloqueo de máquinas',simple:"Para la máquina. Pon tu candado y tarjeta antes de intervenir.",text:'Nadie interviene una máquina si no está detenida y bloqueada con candado y tarjeta personal.'},
+{id:'visitantes',category:'Planta',icon:'fa-id-badge',title:'Visitantes y contratistas',simple:"Pide escarapela visible. Acompaña a visitantes y contratistas en producción.",text:'Visitantes y contratistas deben portar la escarapela visible y estar acompañados por un colaborador en las áreas de producción.'},
+{id:'reporte-incidente',category:'Planta',icon:'fa-bullhorn',title:'Reporte de incidentes',simple:"Avisa al líder o seguridad dentro de 24 horas. Reporta casi accidentes.",text:'Todo incidente, casi accidente o situación sospechosa se reporta en un plazo máximo de 24 horas al líder inmediato o a la línea interna de seguridad.'},
+{id:'evacuacion',category:'Planta',icon:'fa-triangle-exclamation',title:'Evacuación segura',simple:"Para la tarea. Sigue las señales. No uses ascensor. Repórtate con tu líder.",text:'En una evacuación se suspende la tarea, no se usan ascensores, se sigue la ruta señalizada y cada persona se reporta con su líder en el punto de encuentro.'},
+{id:'pasillos-bodega',category:'Otras normas de la Empresa',icon:'fa-person-walking',title:'Pasillos peatonales en bodega',simple:"Camina por pasillos verdes. No cruces por zonas de montacargas.",text:'En bodega solo se camina por los pasillos peatonales demarcados en verde; está prohibido cruzar por las zonas de montacargas.'},
+{id:'contrasenas',category:'Otras normas de la Empresa',icon:'fa-key',title:'No compartir contraseñas',simple:"No compartas contraseñas. Bloquea el computador al levantarte.",text:'No se comparten contraseñas y el computador se bloquea cada vez que la persona se levanta del puesto.'},
+{id:'phishing',category:'Otras normas de la Empresa',icon:'fa-envelope-circle-exclamation',title:'Correos sospechosos',simple:"No abras enlaces sospechosos. Reporta el correo a la mesa de ayuda.",text:'Ante un correo que pida datos, pagos urgentes o la descarga de archivos inesperados, no se abre ningún enlace y se reporta a la mesa de ayuda.'},
+{id:'usb',category:'Otras normas de la Empresa',icon:'fa-hard-drive',title:'USB personales',simple:"No conectes memorias USB personales a los equipos de la empresa.",text:'No se conectan memorias USB personales a los equipos de la Empresa.'},
+{id:'ia-publica',category:'Otras normas de la Empresa',icon:'fa-robot',title:'Información interna en IA pública',simple:"No subas información interna a herramientas públicas de inteligencia artificial.",text:'No se sube información interna, como fórmulas, listas de clientes o precios, a herramientas de IA públicas.'},
+{id:'ruta-chequeo',category:'Otras normas de la Empresa',icon:'fa-truck',title:'Lista de chequeo del vehículo',simple:"Antes de cada ruta, llena y reporta la lista del vehículo.",text:'Antes de cada ruta, el conductor diligencia y reporta la lista de chequeo del vehículo.'},
+{id:'carga-visibilidad',category:'Otras normas de la Empresa',icon:'fa-boxes-stacked',title:'Carga y visibilidad',simple:"No sobrepases la altura marcada. No tapes tu visibilidad.",text:'La carga no puede superar la altura marcada en el vehículo ni bloquear la visibilidad.'},
+{id:'despachos-redes',category:'Otras normas de la Empresa',icon:'fa-ban',title:'Información de despachos',simple:"No compartas rutas, horarios ni contenido de despachos con terceros.",text:'Rutas, horarios y contenido de los despachos no se comparten en redes sociales ni con terceros.'}
 ];
 const MODULES=[
 {id:'epp-zonas',time:'2 min',focus:'protección personal',goal:'Recordar el EPP antes de ingresar a una zona amarilla.'},
@@ -331,7 +346,7 @@ const TOPICS=[
 const SUGGESTIONS=[
 'Priorizar el refuerzo de bloqueo de máquinas porque un error en este tema puede causar eventos severos.',
 'Publicar el acceso rápido a SEGURAPP en los celulares del personal para facilitar la consulta en descansos.',
-'Usar microlecciones semanales y escenarios cortos para sostener la recordación después de la inducción.',
+'Usar repasos semanales y escenarios cortos para sostener la recordación después de la inducción.',
 'Analizar los temas con menor porcentaje de aciertos para planear campañas específicas por área.'
 ];
 function protocol(id){return PROTOCOLS.find(p=>p.id===id)}
@@ -354,15 +369,15 @@ function home(){
     <section class="hero">
       <div class="float-chip float-one"><i class="fa-solid fa-shield-heart"></i> seguridad que se recuerda</div>
       <div class="float-chip float-two"><i class="fa-solid fa-mobile-screen"></i> web + app instalable</div>
-      <div class="float-chip float-three"><i class="fa-solid fa-sparkles"></i> experiencia premium</div>
+      <div class="float-chip float-three"><i class="fa-solid fa-sparkles"></i> tu seguridad primero</div>
       <div class="hero-grid">
         <div>
-          <div class="eyebrow">Plataforma visual de alto impacto</div>
-          <h2>Cada decisión segura comienza aquí.</h2>
-          <p>Aprende en minutos. Consulta en segundos. Practica decisiones reales. La seguridad de planta, al alcance de tu mano.</p>
+          <div class="eyebrow">Antes de volver al turno</div>
+          <h2>Trabaja seguro. Vuelve a casa.</h2>
+          <p>Repasa las normas. Practica qué hacer. Cuídate en cada turno.</p>
           <div class="cta">
-            <button class="btn btn-white" data-go="academia"><i class="fa-solid fa-play"></i> Empezar aprendizaje</button>
-            <button class="btn btn-outline" data-go="simulador"><i class="fa-solid fa-gamepad"></i> Abrir simulador</button>
+            <button class="btn btn-white" data-go="academia"><i class="fa-solid fa-play"></i> Repasar ahora</button>
+            <button class="btn btn-outline" data-go="simulador"><i class="fa-solid fa-gamepad"></i> Practicar un caso</button>
           </div>
         </div>
         <div class="hero-side"><div class="hero-artwork" aria-label="Ilustración de planta industrial con indicadores de seguridad" role="img">
@@ -396,13 +411,13 @@ function home(){
     </section>
 
     <div class="section grid-4">
-      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-book-open-reader"></i></div><div class="kicker">Aprendizaje</div></div><b>${store.lessons.length}/${MODULES.length}</b><span>módulos revisados</span><small>Ruta de refuerzo para el operario, diseñada en formato de microaprendizaje.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-book-open-reader"></i></div><div class="kicker">Aprendizaje</div></div><b>${store.lessons.length}/${MODULES.length}</b><span>módulos revisados</span><small>Ruta de refuerzo para el operario, diseñada en formato de repasos breves.</small></article>
       <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-gamepad"></i></div><div class="kicker">Práctica</div></div><b>${store.scenarioHistory.length}</b><span>escenarios completados</span><small>Casos interactivos para entrenar respuesta ante situaciones frecuentes.</small></article>
       <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-chart-column"></i></div><div class="kicker">Desempeño</div></div><b>${store.attempts.length?avg+'%':'—'}</b><span>promedio de evaluación</span><small>Cálculo local con base en los intentos realizados en este navegador.</small></article>
       <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-layer-group"></i></div><div class="kicker">Consulta</div></div><b>${PROTOCOLS.length}</b><span>protocolos visibles</span><small>Biblioteca filtrable de pautas verificadas según el documento del reto.</small></article>
     </div>
 
-    <div class="section">${sectionHead('Panel ejecutivo del prototipo','Resumen visual del estado de aprendizaje, prioridades de refuerzo y valor del proyecto.')}
+    <div class="section">${sectionHead('Así vas','Resumen visual del estado de aprendizaje, prioridades de refuerzo y valor del proyecto.')}
       <div class="card dashboard">
         <div class="dashboard-grid">
           <div class="score">
@@ -423,23 +438,23 @@ function home(){
       </div>
     </div>
 
-    <div class="section">${sectionHead('Experiencias principales','Cada módulo busca resolver una necesidad real del perfil de operario de planta.')}
+    <div class="section">${sectionHead('¿Qué necesitas hoy?','Cada módulo busca resolver una necesidad real del perfil de operario de planta.')}
       <div class="grid-3">
-        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div><div><div class="meta"><span class="chip">Academia</span><span class="chip dim">microaprendizaje</span></div><h4>Ruta de módulos visuales</h4><p>Seis microlecciones cortas con objetivos concretos, pensadas para recordar lo esencial sin sobrecargar al trabajador.</p></div></article>
-        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-book-open"></i></div><div><div class="meta"><span class="chip">Biblioteca</span><span class="chip dim">consulta rápida</span></div><h4>Protocolos listos para usar</h4><p>Normas claras y filtrables para resolver dudas en pocos segundos, sin depender de un PDF largo ni de correos extensos.</p></div></article>
-        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div><div><div class="meta"><span class="chip">Analítica</span><span class="chip dim">seguimiento</span></div><h4>Lectura simple del desempeño</h4><p>Muestra avances y temas por reforzar, para que la empresa identifique prioridades y el usuario vea su progreso.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div><div><div class="meta"><span class="chip">Academia</span><span class="chip dim">repasos breves</span></div><h4>Ruta de módulos visuales</h4><p>Repasa primero las normas de planta. Marca lo que leíste.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-book-open"></i></div><div><div class="meta"><span class="chip">Biblioteca</span><span class="chip dim">consulta rápida</span></div><h4>Protocolos listos para usar</h4><p>Busca una palabra. Lee el consejo y la norma oficial.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div><div><div class="meta"><span class="chip">Analítica</span><span class="chip dim">seguimiento</span></div><h4>Lectura simple del desempeño</h4><p>Mira tus aciertos. Vuelve a practicar lo que fallaste.</p></div></article>
       </div>
     </div>
 
-    <div class="foot">Prototipo académico. Las cifras 48%, 22 y 71% corresponden al Anexo B; los resultados personales son únicamente de este navegador.</div>
+    <div class="foot">Prototipo EAFIT. Las cifras del caso vienen del Anexo B. Tus resultados quedan aquí.</div>
   `;
   root.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{state.view=b.dataset.go;render()});
 }
 function academy(){
-  setHead('Academia','Microlecciones cortas para reforzar las pautas del Anexo A.');
+  setHead('Aprende en 1 minuto','Repasa una norma en tu descanso.');
   root.innerHTML=`
-    <div class="hint-banner"><div class="circle"><i class="fa-solid fa-brain"></i></div><div><strong>Aprendizaje que se aplica, no solo que se lee</strong><p>Repasa cada pauta del Anexo A, marca lo que revisaste y después comprueba tu comprensión en el simulador o en la evaluación. Marcar una lección no significa haber aprobado.</p></div></div>${sectionHead('Ruta de aprendizaje','Módulos breves con foco claro, tiempo estimado y seguimiento del avance.',`<span class="chip"><i class="fa-solid fa-clock"></i> Actividades de 2–3 min</span>`)}
-    <div class="grid-3">${MODULES.map((m,i)=>{const p=protocol(m.id),done=store.lessons.includes(m.id);return `<article class="card feature"><div class="feature-icon"><i class="fa-solid ${p.icon}"></i></div><div style="flex:1"><div class="meta"><span class="chip">Módulo ${String(i+1).padStart(2,'0')}</span><span class="chip dim">${m.time}</span><span class="chip dim">${esc(m.focus)}</span></div><h4>${esc(p.title)}</h4><p>${esc(p.text)}</p><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:16px"><small style="color:#8ba09d">Objetivo: ${esc(m.goal)}</small><button class="btn ${done?'btn-soft':'btn-dark'}" data-lesson="${m.id}">${done?'<i class="fa-solid fa-check"></i> Revisado':'Marcar como revisado'}</button></div></div></article>`}).join('')}</div>
+    <div class="hint-banner"><div class="circle"><i class="fa-solid fa-brain"></i></div><div><strong>Lee, piensa y practica</strong><p>Lee el consejo y la norma oficial. Después practica. Marcarlo no significa aprobar.</p></div></div>${sectionHead('Ruta de aprendizaje','Módulos breves con foco claro, tiempo estimado y seguimiento del avance.',`<span class="chip"><i class="fa-solid fa-clock"></i> Actividades de 2–3 min</span>`)}
+    <div class="grid-3">${MODULES.map((m,i)=>{const p=protocol(m.id),done=store.lessons.includes(m.id);return `<article class="card feature"><div class="feature-icon"><i class="fa-solid ${p.icon}"></i></div><div style="flex:1"><div class="meta"><span class="chip">Módulo ${String(i+1).padStart(2,'0')}</span><span class="chip dim">${m.time}</span><span class="chip dim">${esc(m.focus)}</span></div><h4>${esc(p.title)}</h4><p class="simple-rule">${esc(p.simple)}</p><div class="official"><strong>Norma oficial</strong><p>${esc(p.text)}</p></div><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:16px"><small style="color:#8ba09d">Objetivo: ${esc(m.goal)}</small><button class="btn ${done?'btn-soft':'btn-dark'}" data-lesson="${m.id}">${done?'<i class="fa-solid fa-check"></i> Revisado':'Marcar como revisado'}</button></div></div></article>`}).join('')}</div>
     <div class="section card dashboard">
       <div class="section-head" style="margin-top:0"><div><h3>Progreso de la ruta</h3><p>El seguimiento se almacena solamente en este navegador para fines de demostración.</p></div></div>
       <div class="bar"><div style="width:${pct(store.lessons.length,MODULES.length)}%"></div></div>
@@ -448,20 +463,20 @@ function academy(){
   root.querySelectorAll('[data-lesson]').forEach(btn=>btn.onclick=()=>{const id=btn.dataset.lesson;if(!store.lessons.includes(id))store.lessons.push(id);save();academy()});
 }
 function library(){
-  setHead('Biblioteca de protocolos','Consulta rápida por tema o categoría.');
-  const cats=['Todas','Física','Digital','Operativa','Emergencias'];
-  const list=PROTOCOLS.filter(p=>(state.filter==='Todas'||p.category===state.filter)&&(p.title+' '+p.text).toLowerCase().includes(state.query.toLowerCase()));
+  setHead('¿Qué hago si…?','Busca la norma. Léela durante tu descanso.');
+  const cats=['Todas','Planta','Otras normas de la Empresa'];
+  const list=PROTOCOLS.filter(p=>(state.filter==='Todas'||p.category===state.filter)&&(p.title+' '+p.simple+' '+p.text).toLowerCase().includes(state.query.toLowerCase()));
   root.innerHTML=`
-    ${sectionHead('Consulta inmediata','Pensada para cuando surge una duda concreta durante el trabajo.')}
+    ${sectionHead('Consulta inmediata','Consulta en tu descanso. Nunca mientras operas una máquina.')}
     <div class="card library">
       <div class="toolbar"><input id="searchInput" class="search" placeholder="Buscar: casco, máquina, correo, evacuación..." value="${esc(state.query)}">${cats.map(c=>`<button class="tag ${state.filter===c?'active':''}" data-filter="${c}">${c}</button>`).join('')}</div>
-      <div class="protocols">${list.map(p=>`<article class="protocol"><div class="top"><div><span class="chip">${esc(p.category)}</span><h4>${esc(p.title)}</h4></div><div class="icon-wrap"><i class="fa-solid ${p.icon}"></i></div></div><p>${esc(p.text)}</p><div style="margin-top:14px;color:#8fa19e;font-size:11px">Fuente: Anexo A • ID ${esc(p.id)}</div></article>`).join('')||'<div class="callout"><h4>Sin coincidencias</h4><p>No encontramos resultados con esa búsqueda. Intenta otra palabra o cambia el filtro.</p></div>'}</div>
+      <div class="protocols">${list.map(p=>`<article class="protocol"><div class="top"><div><span class="chip">${esc(p.category)}</span><h4>${esc(p.title)}</h4></div><div class="icon-wrap"><i class="fa-solid ${p.icon}"></i></div></div><p class="simple-rule">${esc(p.simple)}</p><div class="official"><strong>Norma oficial</strong><p>${esc(p.text)}</p></div><div style="margin-top:14px;color:#8fa19e;font-size:11px">Fuente: Anexo A • ID ${esc(p.id)}</div></article>`).join('')||'<div class="callout"><h4>Sin coincidencias</h4><p>No encontramos resultados con esa búsqueda. Intenta otra palabra o cambia el filtro.</p></div>'}</div>
     </div>`;
   root.querySelector('#searchInput').oninput=e=>{const pos=e.target.selectionStart;state.query=e.target.value;library();const field=root.querySelector('#searchInput');field.focus();field.setSelectionRange(pos,pos)};
   root.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;library()});
 }
 function simulator(){
-  setHead('Simulador','Escenarios interactivos para practicar decisiones seguras.');
+  setHead('¿Tú qué harías?','Practica una decisión sin correr riesgos.');
   const s=SCENARIOS[state.scene];
   root.innerHTML=`
     ${sectionHead('Entrenamiento con escenarios','Practica la decisión correcta y recibe una explicación basada en la pauta oficial.',`<button class="btn btn-soft" id="nextScene"><i class="fa-solid fa-forward"></i> Siguiente caso</button>`)}
@@ -477,17 +492,17 @@ function simulator(){
         </div>
       </article>
       <aside class="card sidepanel">
-        <div class="mini"><h4><i class="fa-solid fa-crosshairs"></i> Competencia entrenada</h4><p>${esc(protocol(s.protocol).title)}</p></div>
-        <div class="mini"><h4><i class="fa-solid fa-file-circle-check"></i> Norma asociada</h4><p>${esc(protocol(s.protocol).text)}</p></div>
+        <div class="mini"><h4><i class="fa-solid fa-crosshairs"></i> Tema del caso</h4><p>${esc(protocol(s.protocol).title)}</p></div>
+        <div class="mini"><h4><i class="fa-solid fa-file-circle-check"></i> Norma asociada</h4><p>${esc(protocol(s.protocol).simple)}</p><p class="official-note">${esc(protocol(s.protocol).text)}</p></div>
         <div class="mini"><h4><i class="fa-solid fa-chart-simple"></i> Progreso de escenarios</h4><div class="bar" style="margin-top:10px"><div style="width:${pct(state.scene+1,SCENARIOS.length)}%"></div></div><p style="margin-top:10px">Caso ${state.scene+1} de ${SCENARIOS.length} abierto.</p></div>
       </aside>
     </div>`;
   let locked=false;
-  root.querySelectorAll('[data-opt]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.opt;store.scenarioHistory.push({protocol:s.protocol,correct:ans===s.correct,date:new Date().toISOString()});save();root.querySelectorAll('[data-opt]').forEach(x=>{x.disabled=true;const i=+x.dataset.opt;if(i===s.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#sceneFeedback').innerHTML=`<div class="feedback"><strong>${ans===s.correct?'<i class="fa-solid fa-circle-check"></i> Decisión correcta':'<i class="fa-solid fa-circle-info"></i> Conviene reforzar esta situación'}</strong><br>${esc(protocol(s.protocol).text)}</div>`});
+  root.querySelectorAll('[data-opt]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.opt;store.scenarioHistory.push({protocol:s.protocol,correct:ans===s.correct,date:new Date().toISOString()});save();root.querySelectorAll('[data-opt]').forEach(x=>{x.disabled=true;const i=+x.dataset.opt;if(i===s.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#sceneFeedback').innerHTML=`<div class="feedback"><strong>${ans===s.correct?'<i class="fa-solid fa-circle-check"></i> Decisión correcta':'<i class="fa-solid fa-circle-info"></i> Conviene reforzar esta situación'}</strong><br>${esc(protocol(s.protocol).simple)}<div class="official"><strong>Norma oficial</strong><p>${esc(protocol(s.protocol).text)}</p></div></div>`});
   root.querySelector('#nextScene').onclick=()=>{state.scene=(state.scene+1)%SCENARIOS.length;simulator()}
 }
 function evaluation(){
-  setHead('Evaluación','Verificación rápida de comprensión y aplicación.');
+  setHead('Pruébate','Mira qué recuerdas del turno.');
   if(!state.quiz)state.quiz={index:0,answers:[]};
   if(state.quiz.index>=QUESTIONS.length){
     const score=state.quiz.answers.filter(x=>x.correct).length;store.attempts.push({score,total:QUESTIONS.length,answers:state.quiz.answers,date:new Date().toISOString()});save();state.quiz=null;
@@ -511,11 +526,11 @@ function evaluation(){
       <div style="margin-top:18px"><button class="btn btn-dark hidden" id="nextQuestion"><i class="fa-solid fa-arrow-right"></i> Continuar</button></div>
     </div>`;
   let locked=false;
-  root.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.answer;state.quiz.answers.push({protocol:q.protocol,correct:ans===q.correct});root.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;const i=+x.dataset.answer;if(i===q.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#quizFeedback').innerHTML=`<div class="feedback"><strong>${ans===q.correct?'<i class="fa-solid fa-circle-check"></i> Respuesta correcta':'<i class="fa-solid fa-circle-info"></i> Respuesta para reforzar'}</strong><br>${esc(protocol(q.protocol).text)}</div>`;root.querySelector('#nextQuestion').classList.remove('hidden')});
+  root.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(locked)return;locked=true;const ans=+btn.dataset.answer;state.quiz.answers.push({protocol:q.protocol,correct:ans===q.correct});root.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;const i=+x.dataset.answer;if(i===q.correct)x.classList.add('good');else if(i===ans)x.classList.add('bad')});root.querySelector('#quizFeedback').innerHTML=`<div class="feedback"><strong>${ans===q.correct?'<i class="fa-solid fa-circle-check"></i> Respuesta correcta':'<i class="fa-solid fa-circle-info"></i> Respuesta para reforzar'}</strong><br>${esc(protocol(q.protocol).simple)}<div class="official"><strong>Norma oficial</strong><p>${esc(protocol(q.protocol).text)}</p></div></div>`;root.querySelector('#nextQuestion').classList.remove('hidden')});
   root.querySelector('#nextQuestion').onclick=()=>{state.quiz.index++;evaluation()}
 }
 function analytics(){
-  setHead('Analítica','Resultados locales, lectura del desempeño y recomendaciones.');
+  setHead('Mi avance','Mira tus aciertos. Repasa lo que falta.');
   const all=[];store.attempts.forEach(a=>a.answers.forEach(x=>all.push(x)));store.scenarioHistory.forEach(s=>all.push({protocol:s.protocol,correct:s.correct}));
   const grouped={};all.forEach(x=>{grouped[x.protocol]=grouped[x.protocol]||{n:0,ok:0};grouped[x.protocol].n++;if(x.correct)grouped[x.protocol].ok++});
   const topicData=TOPICS.map(t=>{let n=0,ok=0;t.ids.forEach(id=>{if(grouped[id]){n+=grouped[id].n;ok+=grouped[id].ok}});return{label:t.label,score:n?pct(ok,n):0,n}});
@@ -525,7 +540,7 @@ function analytics(){
     <div class="grid-3">
       <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-chart-pie"></i></div><div class="kicker">Promedio</div></div><b>${store.attempts.length?avg+'%':'—'}</b><span>desempeño en evaluaciones</span><small>Promedio calculado con los intentos realizados en este dispositivo.</small></article>
       <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-person-rays"></i></div><div class="kicker">Casos</div></div><b>${store.scenarioHistory.length}</b><span>escenarios practicados</span><small>Entrenamiento aplicado mediante simulaciones interactivas.</small></article>
-      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-route"></i></div><div class="kicker">Ruta</div></div><b>${pct(store.lessons.length,MODULES.length)}%</b><span>avance en microlecciones</span><small>Progreso de la ruta de aprendizaje del operario.</small></article>
+      <article class="card stat"><div class="stat-top"><div class="stat-ico"><i class="fa-solid fa-route"></i></div><div class="kicker">Ruta</div></div><b>${pct(store.lessons.length,MODULES.length)}%</b><span>avance en repasos</span><small>Progreso de la ruta de aprendizaje del operario.</small></article>
     </div>
     <div class="section analytics-grid">
       <div class="card analytics">
@@ -543,7 +558,7 @@ function analytics(){
       <p style="margin:0;color:var(--muted);font-size:13px;line-height:1.65">Esta versión guarda resultados solo en el navegador para demostrar la lógica de seguimiento. No almacena datos personales ni se conecta a una base central. En una implementación real, la empresa necesitaría autenticación, permisos y almacenamiento autorizado.</p>
       <div class="cta" style="margin-top:16px"><button class="btn btn-soft" id="resetData"><i class="fa-solid fa-trash"></i> Reiniciar datos</button></div>
     </div>`;
-  root.querySelector('#exportData').onclick=()=>{const blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='segurapp-luxe-datos.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1200)};
+  root.querySelector('#exportData').onclick=()=>{const blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='segurapp-mis-resultados.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1200)};
   root.querySelector('#resetData').onclick=()=>{if(confirm('¿Borrar los datos guardados en este navegador?')){store=blank();save();analytics()}}
 }
 document.addEventListener('keydown',event=>{
