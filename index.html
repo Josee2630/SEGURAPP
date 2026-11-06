@@ -267,8 +267,8 @@ body{font-size:16px}button,input,.btn{min-height:48px}.nav button{min-height:52p
       <div><h1>SEGURAPP</h1><small>Tu seguridad en planta</small></div>
     </div>
     <div class="premium-box">
-      <div class="eyebrow">Reto final</div>
-      <h2>Seguridad en cada decisión</h2>
+      <div class="eyebrow">Tu turno</div>
+      <h2>Vuelve seguro a casa</h2>
       <p>Repasa normas. Practica decisiones. Vuelve a casa seguro.</p>
     </div>
     <div class="nav-label">Navegación</div>
@@ -281,8 +281,8 @@ body{font-size:16px}button,input,.btn{min-height:48px}.nav button{min-height:52p
       <button data-view="analitica"><span class="ico"><i class="fa-solid fa-chart-line"></i></span>Mi avance</button>
     </nav>
     <div class="side-bottom">
-      <div class="side-card"><h4>Contenido controlado</h4><p>Todas las pautas visibles provienen del Anexo A del documento del reto. No se agregan normas inventadas.</p></div>
-      <div class="side-card"><h4>Uso flexible</h4><p>Ideal para descansos cortos, refuerzos semanales y consulta rápida justo cuando surge la duda.</p></div>
+      <div class="side-card"><h4>Contenido controlado</h4><p>Todas las pautas visibles provienen del Anexo A del documento del reto. No agregamos normas inventadas.</p></div>
+      <div class="side-card"><h4>Uso flexible</h4><p>Revisa la app en descansos. Nunca mientras operas máquinas.</p></div>
     </div>
   </aside>
   <main class="workspace">
@@ -430,9 +430,9 @@ function home(){
             </div>
           </div>
           <div class="alerts">
-            <div class="alert warn"><strong><i class="fa-solid fa-triangle-exclamation"></i> Riesgo prioritario</strong><p>En planta, uno de los focos críticos es la omisión del bloqueo de máquinas y del EPP. Conviene mantener este tema visible en la ruta de aprendizaje y en los simuladores.</p></div>
-            <div class="alert good"><strong><i class="fa-solid fa-circle-check"></i> Fortalezas del proyecto</strong><p>La solución cumple varios propósitos del reto: refuerza pautas, facilita la consulta, simula escenarios y verifica la comprensión con un formato más atractivo.</p></div>
-            <div class="alert cyan"><strong><i class="fa-solid fa-lightbulb"></i> Sugerencia de uso</strong><p>Usar la app en descansos y al iniciar el turno puede ayudar a sostener el recuerdo de normas que normalmente se olvidan después de la capacitación.</p></div>
+            <div class="alert warn"><strong><i class="fa-solid fa-triangle-exclamation"></i> Riesgo prioritario</strong><p>Para la máquina antes de intervenirla. Ponte el EPP indicado.</p></div>
+            <div class="alert good"><strong><i class="fa-solid fa-circle-check"></i> Fortalezas del proyecto</strong><p>Repasa, busca una norma y practica. Después comprueba qué aprendiste.</p></div>
+            <div class="alert cyan"><strong><i class="fa-solid fa-lightbulb"></i> Sugerencia de uso</strong><p>Revisa la app durante tus descansos. Nunca mientras operas máquinas.</p></div>
           </div>
         </div>
       </div>
@@ -440,9 +440,9 @@ function home(){
 
     <div class="section">${sectionHead('¿Qué necesitas hoy?','Cada módulo busca resolver una necesidad real del perfil de operario de planta.')}
       <div class="grid-3">
-        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div><div><div class="meta"><span class="chip">Academia</span><span class="chip dim">repasos breves</span></div><h4>Ruta de módulos visuales</h4><p>Repasa primero las normas de planta. Marca lo que leíste.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div><div><div class="meta"><span class="chip">Academia</span><span class="chip dim">repasos breves</span></div><h4>Aprende en 1 minuto</h4><p>Repasa primero las normas de planta. Marca lo que leíste.</p></div></article>
         <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-book-open"></i></div><div><div class="meta"><span class="chip">Biblioteca</span><span class="chip dim">consulta rápida</span></div><h4>Protocolos listos para usar</h4><p>Busca una palabra. Lee el consejo y la norma oficial.</p></div></article>
-        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div><div><div class="meta"><span class="chip">Analítica</span><span class="chip dim">seguimiento</span></div><h4>Lectura simple del desempeño</h4><p>Mira tus aciertos. Vuelve a practicar lo que fallaste.</p></div></article>
+        <article class="card feature"><div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div><div><div class="meta"><span class="chip">Mi avance</span><span class="chip dim">seguimiento</span></div><h4>Mira tus resultados</h4><p>Mira tus aciertos. Vuelve a practicar lo que fallaste.</p></div></article>
       </div>
     </div>
 
@@ -511,7 +511,7 @@ function evaluation(){
       <div style="font-size:74px;color:#0b6b57"><i class="fa-solid ${score>=6?'fa-trophy':'fa-book-open'}"></i></div>
       <div style="font:800 45px/1 'Space Grotesk',Inter,sans-serif;margin-top:6px">${score}/${QUESTIONS.length}</div>
       <p style="margin:8px 0 0;color:var(--muted)">${pct(score,QUESTIONS.length)}% de respuestas correctas.</p>
-      <div class="cta" style="justify-content:center;margin-top:22px"><button class="btn btn-dark" id="retry"><i class="fa-solid fa-rotate-right"></i> Reintentar</button><button class="btn btn-soft" id="goAnalytics"><i class="fa-solid fa-chart-line"></i> Ver analítica</button></div>
+      <div class="cta" style="justify-content:center;margin-top:22px"><button class="btn btn-dark" id="retry"><i class="fa-solid fa-rotate-right"></i> Reintentar</button><button class="btn btn-soft" id="goAnalytics"><i class="fa-solid fa-chart-line"></i> Ver mi avance</button></div>
     </div>`;
     root.querySelector('#retry').onclick=()=>{state.quiz={index:0,answers:[]};evaluation()};root.querySelector('#goAnalytics').onclick=()=>{state.view='analitica';render()};return;
   }
